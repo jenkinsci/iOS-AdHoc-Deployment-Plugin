@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'plist'
 
-class Manifest
+modules Manifest
   attr_accessor :template_name, :build_path
 
   def create(ipa_url,image_url,bundle_identifier,bundle_version,title)
