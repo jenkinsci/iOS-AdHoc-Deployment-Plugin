@@ -1,0 +1,24 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    ansi (1.4.3)
+    jenkins-plugin-runtime (0.2.2)
+      json
+      slop (~> 3.0.2)
+    json (1.7.5-java)
+    plist (3.1.0)
+    require_relative (1.0.3)
+    rubytest (0.5.2)
+      ansi
+    slop (3.0.4)
+    test (0.3.1)
+      rubytest
+
+PLATFORMS
+  java
+
+DEPENDENCIES
+  jenkins-plugin-runtime (~> 0.2.0)
+  plist
+  require_relative
+  test
