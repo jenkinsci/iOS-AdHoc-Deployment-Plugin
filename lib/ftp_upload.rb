@@ -2,7 +2,7 @@ require 'rubygems'
 require 'net/ftp'
 
 module FTP
-  define upload(hostname,username,pass,upload_path,files)
+  define self.upload(hostname,username,pass,upload_path,files)
     ftp = Net::FTP.new
     ftp.passive = true
     ftp.connect hostname
