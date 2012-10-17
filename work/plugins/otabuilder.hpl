@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Created-By: 0.3.7
+Build-Ruby-Platform: java
+Build-Ruby-Version: 1.8.7
+Built-By: jeslyvarghese
+Group-Id: org.jenkins-ci.plugins
+Short-Name: otabuilder
+Long-Name: OTA Builder Plugin
+Url: https://wiki.jenkins-ci.org/display/JENKINS/Otabuilder+Plugin
+Plugin-Class: ruby.RubyPlugin
+Plugin-Version: 0.0.1
+Jenkins-Version: 1.432
+Plugin-Dependencies: ruby-runtime:0.10
+Load-Path: /Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2/gems/ansi-1.4.3/lib:/Users/
+ jeslyvarghese/.rvm/gems/jruby-1.6.7.2/gems/json-1.7.5-java/lib:/Users/j
+ eslyvarghese/.rvm/gems/jruby-1.6.7.2/gems/slop-3.0.4/lib:/Users/jeslyva
+ rghese/.rvm/gems/jruby-1.6.7.2/gems/jenkins-plugin-runtime-0.2.2/lib:/U
+ sers/jeslyvarghese/.rvm/gems/jruby-1.6.7.2/gems/plist-3.1.0/lib:/Users/
+ jeslyvarghese/.rvm/gems/jruby-1.6.7.2/gems/require_relative-1.0.3/lib:/
+ Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2/gems/rubytest-0.5.2/lib:/Us
+ ers/jeslyvarghese/.rvm/gems/jruby-1.6.7.2/gems/test-0.3.1/lib
+Lib-Path: /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/lib/
+Models-Path: /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/models
+Class-Path: /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/views
+Resource-Path: /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/static

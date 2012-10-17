@@ -14,7 +14,7 @@ Jenkins::Plugin::Specification.new do |plugin|
 
   # This specifies where your code is hosted.
   # Alternatives include:
-  :github => 'sourcebits-jesly/otabuilder-plugin' (without myuser it defaults to jenkinsci)
+  #:github => 'sourcebits-jesly/otabuilder-plugin' 
   #:git => 'git://repo.or.cz/otabuilder-plugin.git'
   plugin.uses_repository :github => "otabuilder-plugin"
 
