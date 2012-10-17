@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: kohsuke
+Build-Jdk: 1.6.0_26
+Extension-Name: git
+Specification-Title: Integrates Jenkins with GIT SCM
+Implementation-Title: git
+Implementation-Version: 1.1.25
+Group-Id: org.jenkinsci.plugins
+Short-Name: git
+Long-Name: Jenkins GIT plugin
+Url: http://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin
+Plugin-Version: 1.1.25
+Hudson-Version: 1.424
+Jenkins-Version: 1.424
+Plugin-Dependencies: token-macro:1.5.1;resolution:=optional,parameteri
+ zed-trigger:2.4;resolution:=optional,multiple-scms:0.2;resolution:=op
+ tional
+Plugin-Developers: Kohsuke Kawaguchi:kohsuke:,Nicolas De Loof:ndeloof:
+ nicolas.deloof@gmail.com
+

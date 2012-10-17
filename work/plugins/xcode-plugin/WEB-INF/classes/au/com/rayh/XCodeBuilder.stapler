@@ -1,0 +1,2 @@
+#Tue Mar 27 11:19:55 CEST 2012
+constructor=buildIpa,cleanBeforeBuild,cleanTestReports,configuration,target,sdk,xcodeProjectPath,xcodeProjectFile,xcodebuildArguments,embeddedProfileFile,cfBundleVersionValue,cfBundleShortVersionStringValue,unlockKeychain,keychainPath,keychainPwd,symRoot,xcodeWorkspaceFile,xcodeSchema,configurationBuildDir

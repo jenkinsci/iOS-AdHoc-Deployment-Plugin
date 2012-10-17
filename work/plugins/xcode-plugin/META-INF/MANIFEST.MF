@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: arnaud
+Build-Jdk: 1.6.0_29
+Extension-Name: xcode-plugin
+Specification-Title: This plugin adds the ability to call Xcode comman
+ d line tools to automate build and packaging iOS applications (iPhone
+ , iPad, ...).
+Implementation-Title: xcode-plugin
+Implementation-Version: 1.3.1
+Group-Id: org.jenkins-ci.plugins
+Short-Name: xcode-plugin
+Long-Name: XCode integration
+Url: https://wiki.jenkins-ci.org/display/JENKINS/Xcode+Plugin
+Plugin-Version: 1.3.1
+Hudson-Version: 1.399
+Plugin-Dependencies: token-macro:1.5.1
+Plugin-Developers: Ray Yamamoto Hilton:rayhilton:ray.hilton@gmail.com,
+ Arnaud Heritier:aheritier:aheritier@apache.org
+

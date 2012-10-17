@@ -2,59 +2,74 @@
   f = taglib('lib/form')
   f.block do
   	f.entry(:title=>'IPA File Path',
-  			:field=>'ipa_path'
+  			:field=>'ipa_path',
   			:description=>'You need to tell the IPA files path along with the file name which needs to be uploaded to ftp-server and OTA link to be mailed'
-  		   )
-    f.textbox
+  		   ) do  f.textbox
+    end
     
     f.entry(:title=>'Icon file path',
-    	    :field=>'icon_path'
+    	    :field=>'icon_path',
     	    :description=>'Enter the icon file path relative to project workspace'
-    	   )
-    f.textbox
+    	   ) do f.textbox
+    end
     
     f.entry(:title=>'Bundle Identifier',
     		:field=>'bundle_identifier',
     		:description=>'Provide the bundle identifier as described in XCode for the project, wrong bundle identifier can cause the OTA link not to work'
-    		)
-    f.textbox
+    		) do f.textbox
+    end
     
     f.entry(:title=>'Bundle Version',
     		:field=>'bundle_version',
     		:description=>'Provide the version for your current build'
-    		)
-    f.textbox
+    		) do f.textbox
+    end
     
     f.entry(:title=>'Title',
     		:field=>'title',
     		:description=>'Enter your applications title here'
-    		)
-    f.textbox
+    		)do f.textbox
+    end
     
     f.entry(:title=>'FTP OTA Directory',
-    		:field=>'ftp_ota_dir'
+    		:field=>'ftp_ota_dir',
     		:description=>'Enter the ftp directory in which the ota build link is to be saved'
-    		)
-    f.textbox
+    		) do f.textbox
+    end
     
     f.entry(:title=>'FTP Hostname',
-    		:field=>'ftp_host'
+    		:field=>'ftp_host',
     		:description=>'Enter the ftp hostname here'
-    		)
-    f.textbox
+    		) do f.textbox
+    end
     
     f.entry(:title=>'FTP Username',
-    		:field=>'ftp_user'
+    		:field=>'ftp_user',
     		:description=>'Enter the ftp username here'
-    		)
-    f.textbox
+    		) do f.textbox
+    end
     
     f.entry(:title=>'FTP Password',
-    		:field=>'ftp_password'
+    		:field=>'ftp_password',
     		:description=>'Enter the ftp hostname here'
-    		)
-    f.password
+    		) do f.password
+    end
     
+    f.entry(:title=>'GMail Username',
+    		:field=>'gmail_user',
+    		:description=>'The GMail ID from which the email to reciver is to be sent'
+    		) do f.textbox
+    end
     
+    f.entry(:title=>'GMail Password',
+    		:field=>'gmail_pass',
+    		:description=>'The password to the GMail account'
+    		) do f.password
+    end
+    
+    f.entry(:title=>'Reciever Mail Address',
+    		:field=>'reciever_mail_id'
+    		) do f.textbox
+    end
   end
 %>

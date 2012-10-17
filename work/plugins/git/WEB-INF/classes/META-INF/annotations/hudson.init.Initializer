@@ -1,0 +1,2 @@
+hudson.plugins.git.GitSCM
+hudson.plugins.git.GitTool

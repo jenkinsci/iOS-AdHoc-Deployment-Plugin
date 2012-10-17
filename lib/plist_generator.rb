@@ -4,8 +4,8 @@ require 'plist'
 module Manifest
 
   def self.create(ipa_url,image_url,bundle_identifier,bundle_version,title,template_name,build_path)
-    manifest = Plist::parse_xml "#{File.expand_path('..',Dir.pwd)}/resources/#{template_name}"
-    
+    manifest = Plist::parse_xml "#{File.expand_path(Dir.pwd)}/resources/#{template_name}"
+
     return nil if manifest.nil?
     
     manifest['items'][0]['assets'][0]['url'] = ipa_url
@@ -19,7 +19,6 @@ module Manifest
     manifest_filename = "#{underscored_title}_#{underscored_version}.plist"
     
     manifest.save_plist "#{build_path}/#{manifest_filename}"
-    
-    return manifest_filename
+    return "#{build_path}/#{manifest_filename}"
   end
 end

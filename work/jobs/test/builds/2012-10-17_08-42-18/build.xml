@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.CauseAction>
+      <causes>
+        <hudson.model.Cause_-UserIdCause/>
+      </causes>
+    </hudson.model.CauseAction>
+  </actions>
+  <number>8</number>
+  <result>FAILURE</result>
+  <duration>290</duration>
+  <charset>MacRoman</charset>
+  <keepLog>false</keepLog>
+  <builtOn></builtOn>
+  <workspace>/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace</workspace>
+  <hudsonVersion>1.475</hudsonVersion>
+  <scm class="hudson.scm.NullChangeLogParser"/>
+  <culprits class="com.google.common.collect.EmptyImmutableSortedSet"/>
+</build>

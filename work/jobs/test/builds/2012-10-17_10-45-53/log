@@ -1,0 +1,499 @@
+Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace
+Checkout:workspace / /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace - hudson.remoting.LocalChannel@6945c41e
+Using strategy: Default
+Last Built Revision: Revision c6a1fa91eed321befcff1ebf355bf9a3037d6dfb (origin/HEAD, origin/master)
+Fetching changes from 1 remote Git repository
+Fetching upstream changes from git://github.com/sourcebits-jesly/GroceryList.git
+Seen branch in repository origin/HEAD
+Seen branch in repository origin/master
+Commencing build of Revision c6a1fa91eed321befcff1ebf355bf9a3037d6dfb (origin/HEAD, origin/master)
+Checking out Revision c6a1fa91eed321befcff1ebf355bf9a3037d6dfb (origin/HEAD, origin/master)
+Warning : There are multiple branch changesets here
+Working directory is /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace.
+[workspace] $ /usr/bin/xcodebuild -version
+Xcode 4.2
+Build version 4C199
+Fetching marketing version number (CFBundleShortVersionString) from project.
+[workspace] $ /usr/bin/agvtool mvers -terse1
+Found marketing version (CFBundleShortVersionString): 1.0.
+Marketing version (CFBundleShortVersionString) found in project configuration: 1.0.
+Fetching technical version number (CFBundleVersion) from project.
+[workspace] $ /usr/bin/agvtool vers -terse
+No marketing version found (CFBundleVersion)
+Technical version (CFBundleVersion) found in project configuration: .
+Marketing version (CFBundleShortVersionString) used by Jenkins to produce the IPA: 1.0
+Technical version (CFBundleVersion) used by Jenkins to produce the IPA: 
+[workspace] $ /usr/bin/security list-keychains -s ${HOME}/Library/Keychains/jenkins.keychain
+[workspace] $ /usr/bin/security default-keychain -d user -s ${HOME}/Library/Keychains/jenkins.keychain
+[workspace] $ /usr/bin/security unlock-keychain -p ******** ${HOME}/Library/Keychains/jenkins.keychain
+Going to invoke xcodebuild:target: ALL, sdk: DEFAULT, project: DEFAULT, configuration: Release, clean: NO, symRoot: DEFAULT, configurationBuildDir: DEFAULT
+[workspace] $ /usr/bin/xcodebuild -alltargets -configuration Release build
+=== BUILD NATIVE TARGET GroceryList OF PROJECT GroceryList WITH CONFIGURATION Release ===
+Check dependencies
+
+CodeSign build/Release-iphoneos/GroceryList.app
+    cd /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace
+    setenv CODESIGN_ALLOCATE /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate
+    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2/bin:/Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2@global/bin:/Users/jeslyvarghese/.rvm/rubies/jruby-1.6.7.2/bin:/Users/jeslyvarghese/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"
+    /usr/bin/codesign --force --sign "iPhone Developer: Uday Rau (24DDSDXCDM)" --resource-rules=/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app/ResourceRules.plist --entitlements /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryList.build/GroceryList.xcent /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app
+/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app: replacing existing signature
+
+Validate build/Release-iphoneos/GroceryList.app
+    cd /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace
+    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2/bin:/Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2@global/bin:/Users/jeslyvarghese/.rvm/rubies/jruby-1.6.7.2/bin:/Users/jeslyvarghese/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"
+    setenv PRODUCT_TYPE com.apple.product-type.application
+    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/Validation /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app
+warning: iPhone/iPod Touch: Info.plist: Unable to verify icon dimensions, no icon found.  You must define CFBundleIcons, CFBundleIconFiles, CFBundleIconFile, or provide a default Icon.png that is 57x57 (-19013)
+Unable to validate your application. - (null)
+
+
+
+=== BUILD NATIVE TARGET GroceryListTests OF PROJECT GroceryList WITH CONFIGURATION Release ===
+Check dependencies
+
+PhaseScriptExecution "Run Script" build/GroceryList.build/Release-iphoneos/GroceryListTests.build/Script-D8FBF932162C141B00D40EE1.sh
+    cd /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace
+    setenv ACTION build
+    setenv AD_HOC_CODE_SIGNING_ALLOWED NO
+    setenv ALTERNATE_GROUP staff
+    setenv ALTERNATE_MODE u+w,go-w,a+rX
+    setenv ALTERNATE_OWNER jeslyvarghese
+    setenv ALWAYS_SEARCH_USER_PATHS NO
+    setenv APPLE_INTERNAL_DEVELOPER_DIR /AppleInternal/Developer
+    setenv APPLE_INTERNAL_DIR /AppleInternal
+    setenv APPLE_INTERNAL_DOCUMENTATION_DIR /AppleInternal/Documentation
+    setenv APPLE_INTERNAL_LIBRARY_DIR /AppleInternal/Library
+    setenv APPLE_INTERNAL_TOOLS /AppleInternal/Developer/Tools
+    setenv APPLY_RULES_IN_COPY_FILES NO
+    setenv ARCHS armv7
+    setenv ARCHS_STANDARD_32_64_BIT armv7
+    setenv ARCHS_STANDARD_32_BIT armv7
+    setenv ARCHS_UNIVERSAL_IPHONE_OS armv7
+    setenv AVAILABLE_PLATFORMS "iphonesimulator macosx iphoneos"
+    setenv BUILD_COMPONENTS "headers build"
+    setenv BUILD_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build
+    setenv BUILD_ROOT /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build
+    setenv BUILD_STYLE 
+    setenv BUILD_VARIANTS normal
+    setenv BUILT_PRODUCTS_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos
+    setenv BUNDLE_LOADER /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app/GroceryList
+    setenv CACHE_ROOT /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Caches-/com.apple.Xcode.502
+    setenv CCHROOT /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Caches-/com.apple.Xcode.502
+    setenv CHMOD /bin/chmod
+    setenv CHOWN /usr/sbin/chown
+    setenv CLASS_FILE_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/JavaClasses
+    setenv CLEAN_PRECOMPS YES
+    setenv CLONE_HEADERS NO
+    setenv CODESIGNING_FOLDER_PATH /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryListTests.octest
+    setenv CODE_SIGNING_REQUIRED YES
+    setenv CODE_SIGN_CONTEXT_CLASS XCiPhoneOSCodeSignContext
+    setenv CODE_SIGN_IDENTITY "iPhone Developer: Uday Rau (24DDSDXCDM)"
+    setenv COMMAND_MODE legacy
+    setenv COMPOSITE_SDK_DIRS /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Caches-/com.apple.Xcode.502/CompositeSDKs
+    setenv COMPRESS_PNG_FILES YES
+    setenv CONFIGURATION Release
+    setenv CONFIGURATION_BUILD_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos
+    setenv CONFIGURATION_TEMP_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos
+    setenv CONTENTS_FOLDER_PATH GroceryListTests.octest
+    setenv COPYING_PRESERVES_HFS_DATA NO
+    setenv COPY_PHASE_STRIP YES
+    setenv COPY_RESOURCES_FROM_STATIC_FRAMEWORKS YES
+    setenv CP /bin/cp
+    setenv CURRENT_ARCH armv7
+    setenv CURRENT_VARIANT normal
+    setenv DEAD_CODE_STRIPPING YES
+    setenv DEBUGGING_SYMBOLS YES
+    setenv DEBUG_INFORMATION_FORMAT dwarf-with-dsym
+    setenv DEFAULT_COMPILER com.apple.compilers.llvm.clang.1_0
+    setenv DEPLOYMENT_LOCATION NO
+    setenv DEPLOYMENT_POSTPROCESSING NO
+    setenv DERIVED_FILES_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/DerivedSources
+    setenv DERIVED_FILE_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/DerivedSources
+    setenv DERIVED_SOURCES_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/DerivedSources
+    setenv DEVELOPER_APPLICATIONS_DIR /Developer/Applications
+    setenv DEVELOPER_BIN_DIR /Developer/usr/bin
+    setenv DEVELOPER_DIR /Developer
+    setenv DEVELOPER_FRAMEWORKS_DIR /Developer/Library/Frameworks
+    setenv DEVELOPER_FRAMEWORKS_DIR_QUOTED "\"/Developer/Library/Frameworks\""
+    setenv DEVELOPER_LIBRARY_DIR /Developer/Library
+    setenv DEVELOPER_SDK_DIR /Developer/SDKs
+    setenv DEVELOPER_TOOLS_DIR /Developer/Tools
+    setenv DEVELOPER_USR_DIR /Developer/usr
+    setenv DEVELOPMENT_LANGUAGE English
+    setenv DOCUMENTATION_FOLDER_PATH GroceryListTests.octest/English.lproj/Documentation
+    setenv DO_HEADER_SCANNING_IN_JAM NO
+    setenv DSTROOT /tmp/GroceryList.dst
+    setenv DWARF_DSYM_FILE_NAME GroceryListTests.octest.dSYM
+    setenv DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT NO
+    setenv DWARF_DSYM_FOLDER_PATH /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos
+    setenv EFFECTIVE_PLATFORM_NAME -iphoneos
+    setenv EMBEDDED_PROFILE_NAME embedded.mobileprovision
+    setenv ENABLE_HEADER_DEPENDENCIES YES
+    setenv ENABLE_OPENMP_SUPPORT NO
+    setenv ENTITLEMENTS_REQUIRED YES
+    setenv EXCLUDED_INSTALLSRC_SUBDIRECTORY_PATTERNS ".DS_Store .svn .git .hg CVS"
+    setenv EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES "*.nib *.lproj *.framework *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj"
+    setenv EXECUTABLES_FOLDER_PATH GroceryListTests.octest/Executables
+    setenv EXECUTABLE_FOLDER_PATH GroceryListTests.octest
+    setenv EXECUTABLE_NAME GroceryListTests
+    setenv EXECUTABLE_PATH GroceryListTests.octest/GroceryListTests
+    setenv FILE_LIST /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/Objects/LinkFileList
+    setenv FIXED_FILES_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/FixedFiles
+    setenv FRAMEWORKS_FOLDER_PATH GroceryListTests.octest/Frameworks
+    setenv FRAMEWORK_FLAG_PREFIX -framework
+    setenv FRAMEWORK_SEARCH_PATHS "/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/Developer/Library/Frameworks /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/Developer/Library/Frameworks"
+    setenv FRAMEWORK_VERSION A
+    setenv FULL_PRODUCT_NAME GroceryListTests.octest
+    setenv GCC3_VERSION 3.3
+    setenv GCC_C_LANGUAGE_STANDARD gnu99
+    setenv GCC_INLINES_ARE_PRIVATE_EXTERN YES
+    setenv GCC_PFE_FILE_C_DIALECTS "c objective-c c++ objective-c++"
+    setenv GCC_PRECOMPILE_PREFIX_HEADER YES
+    setenv GCC_PREFIX_HEADER GroceryList/GroceryList-Prefix.pch
+    setenv GCC_THUMB_SUPPORT YES
+    setenv GCC_TREAT_WARNINGS_AS_ERRORS NO
+    setenv GCC_VERSION com.apple.compilers.llvm.clang.1_0
+    setenv GCC_VERSION_IDENTIFIER com_apple_compilers_llvm_clang_1_0
+    setenv GCC_WARN_ABOUT_MISSING_PROTOTYPES YES
+    setenv GCC_WARN_ABOUT_RETURN_TYPE YES
+    setenv GCC_WARN_UNUSED_VARIABLE YES
+    setenv GENERATE_MASTER_OBJECT_FILE NO
+    setenv GENERATE_PKGINFO_FILE NO
+    setenv GENERATE_PROFILING_CODE NO
+    setenv GID 20
+    setenv GROUP staff
+    setenv HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT YES
+    setenv HEADERMAP_INCLUDES_FRAMEWORK_ENTRIES_FOR_ALL_PRODUCT_TYPES YES
+    setenv HEADERMAP_INCLUDES_NONPUBLIC_NONPRIVATE_HEADERS YES
+    setenv HEADERMAP_INCLUDES_PROJECT_HEADERS YES
+    setenv HEADER_SEARCH_PATHS "\"/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/include\" "
+    setenv ICONV /usr/bin/iconv
+    setenv INFOPLIST_EXPAND_BUILD_SETTINGS YES
+    setenv INFOPLIST_FILE GroceryListTests/GroceryListTests-Info.plist
+    setenv INFOPLIST_OUTPUT_FORMAT binary
+    setenv INFOPLIST_PATH GroceryListTests.octest/Info.plist
+    setenv INFOPLIST_PREPROCESS NO
+    setenv INFOSTRINGS_PATH GroceryListTests.octest/English.lproj/InfoPlist.strings
+    setenv INSTALL_DIR /tmp/GroceryList.dst
+    setenv INSTALL_GROUP staff
+    setenv INSTALL_MODE_FLAG u+w,go-w,a+rX
+    setenv INSTALL_OWNER jeslyvarghese
+    setenv INSTALL_ROOT /tmp/GroceryList.dst
+    setenv IPHONEOS_DEPLOYMENT_TARGET 5.0
+    setenv JAVAC_DEFAULT_FLAGS "-J-Xms64m -J-XX:NewSize=4M -J-Dfile.encoding=UTF8"
+    setenv JAVA_APP_STUB /System/Library/Frameworks/JavaVM.framework/Resources/MacOS/JavaApplicationStub
+    setenv JAVA_ARCHIVE_CLASSES YES
+    setenv JAVA_ARCHIVE_TYPE JAR
+    setenv JAVA_COMPILER /usr/bin/javac
+    setenv JAVA_FOLDER_PATH GroceryListTests.octest/Java
+    setenv JAVA_FRAMEWORK_RESOURCES_DIRS Resources
+    setenv JAVA_JAR_FLAGS cv
+    setenv JAVA_SOURCE_SUBDIR .
+    setenv JAVA_USE_DEPENDENCIES YES
+    setenv JAVA_ZIP_FLAGS -urg
+    setenv JIKES_DEFAULT_FLAGS "+E +OLDCSO"
+    setenv KEEP_PRIVATE_EXTERNS NO
+    setenv LD_GENERATE_MAP_FILE NO
+    setenv LD_MAP_FILE_PATH /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/GroceryListTests-LinkMap-normal-armv7.txt
+    setenv LD_NO_PIE NO
+    setenv LD_OPENMP_FLAGS -fopenmp
+    setenv LEGACY_DEVELOPER_DIR /Developer/Library/Xcode/PrivatePlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer
+    setenv LEX /Developer/usr/bin/lex
+    setenv LIBRARY_FLAG_NOSPACE YES
+    setenv LIBRARY_FLAG_PREFIX -l
+    setenv LIBRARY_SEARCH_PATHS "\"/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos\" "
+    setenv LINKER_DISPLAYS_MANGLED_NAMES NO
+    setenv LINK_FILE_LIST_normal_armv7 /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/Objects-normal/armv7/GroceryListTests.LinkFileList
+    setenv LINK_WITH_STANDARD_LIBRARIES YES
+    setenv LOCALIZED_RESOURCES_FOLDER_PATH GroceryListTests.octest/English.lproj
+    setenv LOCAL_ADMIN_APPS_DIR /Applications/Utilities
+    setenv LOCAL_APPS_DIR /Applications
+    setenv LOCAL_DEVELOPER_DIR /Library/Developer
+    setenv LOCAL_LIBRARY_DIR /Library
+    setenv MACH_O_TYPE mh_bundle
+    setenv MAC_OS_X_PRODUCT_BUILD_VERSION 10K540
+    setenv MAC_OS_X_VERSION_ACTUAL 1068
+    setenv MAC_OS_X_VERSION_MAJOR 1060
+    setenv MAC_OS_X_VERSION_MINOR 0608
+    setenv NATIVE_ARCH armv7
+    setenv NATIVE_ARCH_32_BIT i386
+    setenv NATIVE_ARCH_64_BIT x86_64
+    setenv NATIVE_ARCH_ACTUAL x86_64
+    setenv NO_COMMON YES
+    setenv OBJECT_FILE_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/Objects
+    setenv OBJECT_FILE_DIR_normal /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/Objects-normal
+    setenv OBJROOT /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build
+    setenv ONLY_ACTIVE_ARCH NO
+    setenv OPTIMIZATION_LEVEL 0
+    setenv OS MACOS
+    setenv OSAC /usr/bin/osacompile
+    setenv OTHER_CFLAGS -DNS_BLOCK_ASSERTIONS=1
+    setenv OTHER_CPLUSPLUSFLAGS -DNS_BLOCK_ASSERTIONS=1
+    setenv PACKAGE_TYPE com.apple.package-type.wrapper
+    setenv PASCAL_STRINGS YES
+    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2/bin:/Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2@global/bin:/Users/jeslyvarghese/.rvm/rubies/jruby-1.6.7.2/bin:/Users/jeslyvarghese/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"
+    setenv PATH_PREFIXES_EXCLUDED_FROM_HEADER_DEPENDENCIES "/usr/include /usr/local/include /System/Library/Frameworks /System/Library/PrivateFrameworks /Developer/Headers /Developer/SDKs /Developer/Platforms"
+    setenv PBDEVELOPMENTPLIST_PATH GroceryListTests.octest/pbdevelopment.plist
+    setenv PFE_FILE_C_DIALECTS objective-c
+    setenv PKGINFO_FILE_PATH /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/PkgInfo
+    setenv PKGINFO_PATH GroceryListTests.octest/PkgInfo
+    setenv PLATFORM_DEVELOPER_APPLICATIONS_DIR /Developer/Platforms/iPhoneOS.platform/Developer/Applications
+    setenv PLATFORM_DEVELOPER_BIN_DIR /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin
+    setenv PLATFORM_DEVELOPER_LIBRARY_DIR /Developer/Library/Xcode/PrivatePlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library
+    setenv PLATFORM_DEVELOPER_SDK_DIR /Developer/Platforms/iPhoneOS.platform/Developer/SDKs
+    setenv PLATFORM_DEVELOPER_TOOLS_DIR /Developer/Platforms/iPhoneOS.platform/Developer/Tools
+    setenv PLATFORM_DEVELOPER_USR_DIR /Developer/Platforms/iPhoneOS.platform/Developer/usr
+    setenv PLATFORM_DIR /Developer/Platforms/iPhoneOS.platform
+    setenv PLATFORM_NAME iphoneos
+    setenv PLATFORM_PREFERRED_ARCH i386
+    setenv PLATFORM_PRODUCT_BUILD_VERSION 9A334
+    setenv PLIST_FILE_OUTPUT_FORMAT binary
+    setenv PLUGINS_FOLDER_PATH GroceryListTests.octest/PlugIns
+    setenv PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR YES
+    setenv PRECOMP_DESTINATION_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/PrefixHeaders
+    setenv PRESERVE_DEAD_CODE_INITS_AND_TERMS NO
+    setenv PRIVATE_HEADERS_FOLDER_PATH GroceryListTests.octest/PrivateHeaders
+    setenv PRODUCT_NAME GroceryListTests
+    setenv PRODUCT_SETTINGS_PATH /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/GroceryListTests/GroceryListTests-Info.plist
+    setenv PRODUCT_TYPE com.apple.product-type.bundle
+    setenv PROFILING_CODE NO
+    setenv PROJECT GroceryList
+    setenv PROJECT_DERIVED_FILE_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/DerivedSources
+    setenv PROJECT_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace
+    setenv PROJECT_FILE_PATH /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/GroceryList.xcodeproj
+    setenv PROJECT_NAME GroceryList
+    setenv PROJECT_TEMP_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build
+    setenv PROVISIONING_PROFILE 898A7690-1A3E-4CD2-BF45-F500403B9850
+    setenv PUBLIC_HEADERS_FOLDER_PATH GroceryListTests.octest/Headers
+    setenv RECURSIVE_SEARCH_PATHS_FOLLOW_SYMLINKS YES
+    setenv REMOVE_CVS_FROM_RESOURCES YES
+    setenv REMOVE_GIT_FROM_RESOURCES YES
+    setenv REMOVE_HG_FROM_RESOURCES YES
+    setenv REMOVE_SVN_FROM_RESOURCES YES
+    setenv REZ_COLLECTOR_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/ResourceManagerResources
+    setenv REZ_OBJECTS_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/ResourceManagerResources/Objects
+    setenv REZ_SEARCH_PATHS "\"/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos\" "
+    setenv RUN_CLANG_STATIC_ANALYZER NO
+    setenv SCAN_ALL_SOURCE_FILES_FOR_INCLUDES NO
+    setenv SCRIPTS_FOLDER_PATH GroceryListTests.octest/Scripts
+    setenv SCRIPT_INPUT_FILE_COUNT 0
+    setenv SCRIPT_OUTPUT_FILE_COUNT 0
+    setenv SDKROOT /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk
+    setenv SDK_DIR /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk
+    setenv SDK_NAME iphoneos5.0
+    setenv SDK_PRODUCT_BUILD_VERSION 9A334
+    setenv SED /usr/bin/sed
+    setenv SEPARATE_STRIP NO
+    setenv SEPARATE_SYMBOL_EDIT NO
+    setenv SET_DIR_MODE_OWNER_GROUP YES
+    setenv SET_FILE_MODE_OWNER_GROUP NO
+    setenv SHALLOW_BUNDLE YES
+    setenv SHARED_DERIVED_FILE_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/DerivedSources
+    setenv SHARED_FRAMEWORKS_FOLDER_PATH GroceryListTests.octest/SharedFrameworks
+    setenv SHARED_PRECOMPS_DIR /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders
+    setenv SHARED_SUPPORT_FOLDER_PATH GroceryListTests.octest/SharedSupport
+    setenv SKIP_INSTALL YES
+    setenv SOURCE_ROOT /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace
+    setenv SRCROOT /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace
+    setenv STRINGS_FILE_OUTPUT_ENCODING binary
+    setenv STRIP_INSTALLED_PRODUCT YES
+    setenv STRIP_STYLE non-global
+    setenv SUPPORTED_DEVICE_FAMILIES 1,2
+    setenv SUPPORTED_PLATFORMS "iphonesimulator iphoneos"
+    setenv SYMROOT /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build
+    setenv SYSTEM_ADMIN_APPS_DIR /Applications/Utilities
+    setenv SYSTEM_APPS_DIR /Applications
+    setenv SYSTEM_CORE_SERVICES_DIR /System/Library/CoreServices
+    setenv SYSTEM_DEMOS_DIR /Applications/Extras
+    setenv SYSTEM_DEVELOPER_APPS_DIR /Developer/Applications
+    setenv SYSTEM_DEVELOPER_BIN_DIR /Developer/usr/bin
+    setenv SYSTEM_DEVELOPER_DEMOS_DIR "/Developer/Applications/Utilities/Built Examples"
+    setenv SYSTEM_DEVELOPER_DIR /Developer
+    setenv SYSTEM_DEVELOPER_DOC_DIR "/Developer/ADC Reference Library"
+    setenv SYSTEM_DEVELOPER_GRAPHICS_TOOLS_DIR "/Developer/Applications/Graphics Tools"
+    setenv SYSTEM_DEVELOPER_JAVA_TOOLS_DIR "/Developer/Applications/Java Tools"
+    setenv SYSTEM_DEVELOPER_PERFORMANCE_TOOLS_DIR "/Developer/Applications/Performance Tools"
+    setenv SYSTEM_DEVELOPER_RELEASENOTES_DIR "/Developer/ADC Reference Library/releasenotes"
+    setenv SYSTEM_DEVELOPER_TOOLS /Developer/Tools
+    setenv SYSTEM_DEVELOPER_TOOLS_DOC_DIR "/Developer/ADC Reference Library/documentation/DeveloperTools"
+    setenv SYSTEM_DEVELOPER_TOOLS_RELEASENOTES_DIR "/Developer/ADC Reference Library/releasenotes/DeveloperTools"
+    setenv SYSTEM_DEVELOPER_USR_DIR /Developer/usr
+    setenv SYSTEM_DEVELOPER_UTILITIES_DIR /Developer/Applications/Utilities
+    setenv SYSTEM_DOCUMENTATION_DIR /Library/Documentation
+    setenv SYSTEM_LIBRARY_DIR /System/Library
+    setenv TARGETED_DEVICE_FAMILY 1
+    setenv TARGETNAME GroceryListTests
+    setenv TARGET_BUILD_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos
+    setenv TARGET_NAME GroceryListTests
+    setenv TARGET_TEMP_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build
+    setenv TEMP_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build
+    setenv TEMP_FILES_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build
+    setenv TEMP_FILE_DIR /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build
+    setenv TEMP_ROOT /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build
+    setenv TEST_AFTER_BUILD YES
+    setenv UID 502
+    setenv UNLOCALIZED_RESOURCES_FOLDER_PATH GroceryListTests.octest
+    setenv UNSTRIPPED_PRODUCT NO
+    setenv USER jeslyvarghese
+    setenv USER_APPS_DIR /Users/jeslyvarghese/Applications
+    setenv USER_LIBRARY_DIR /Users/jeslyvarghese/Library
+    setenv USE_DYNAMIC_NO_PIC YES
+    setenv USE_HEADERMAP YES
+    setenv USE_HEADER_SYMLINKS NO
+    setenv VALIDATE_PRODUCT YES
+    setenv VALID_ARCHS "armv6 armv7"
+    setenv VERBOSE_PBXCP NO
+    setenv VERSIONPLIST_PATH GroceryListTests.octest/version.plist
+    setenv VERSION_INFO_BUILDER jeslyvarghese
+    setenv VERSION_INFO_FILE GroceryListTests_vers.c
+    setenv VERSION_INFO_STRING "\"@(#)PROGRAM:GroceryListTests  PROJECT:GroceryList-\""
+    setenv WRAPPER_EXTENSION octest
+    setenv WRAPPER_NAME GroceryListTests.octest
+    setenv WRAPPER_SUFFIX .octest
+    setenv XCODE_APP_SUPPORT_DIR /Developer/Library/Xcode
+    setenv XCODE_PRODUCT_BUILD_VERSION 4C199
+    setenv XCODE_VERSION_ACTUAL 0420
+    setenv XCODE_VERSION_MAJOR 0400
+    setenv XCODE_VERSION_MINOR 0420
+    setenv YACC /Developer/usr/bin/yacc
+    /bin/sh -c /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/GroceryList.build/Release-iphoneos/GroceryListTests.build/Script-D8FBF932162C141B00D40EE1.sh
+
+
+** BUILD SUCCEEDED **
+
+Cleaning up previously generate .ipa files
+Packaging IPA
+Packaging GroceryList.app => /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList-Release-1.0.ipa
+[workspace] $ /usr/bin/xcrun -sdk iphoneos PackageApplication -v /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app -o /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList-Release-1.0.ipa
+Packaging application: '/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app'
+Arguments: verbose=1  output=/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList-Release-1.0.ipa  
+Environment variables:
+NODE_NAME = master
+COMMAND_MODE = unix2003
+GEM_HOME = /Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2
+GIT_BRANCH = origin/HEAD
+VERSIONER_PERL_PREFER_32_BIT = no
+_first = 0
+GEM_PATH = /Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2:/Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2@global
+RUBY_VERSION = jruby-1.6.7.2
+SSH_AUTH_SOCK = /tmp/launch-I8H0r6/Listeners
+Apple_PubSub_Socket_Render = /tmp/launch-XNwVxl/Render
+NODE_LABELS = master
+PWD = /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin
+rvm_prefix = /Users/jeslyvarghese
+USER = jeslyvarghese
+BUILD_ID = 2012-10-17_10-45-53
+rvm_bin_path = /Users/jeslyvarghese/.rvm/bin
+JENKINS_HOME = /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work
+JAVA_MAIN_CLASS_7308 = org/jruby/Main
+LOGNAME = jeslyvarghese
+rvm_path = /Users/jeslyvarghese/.rvm
+SHLVL = 2
+TERM_PROGRAM = Apple_Terminal
+escape_flag = 1
+TERM_PROGRAM_VERSION = 273.1
+PATH = /Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2/bin:/Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2@global/bin:/Users/jeslyvarghese/.rvm/rubies/jruby-1.6.7.2/bin:/Users/jeslyvarghese/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
+MY_RUBY_HOME = /Users/jeslyvarghese/.rvm/rubies/jruby-1.6.7.2
+HUDSON_HOME = /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work
+__array_start = 0
+_second = 1
+TERM = xterm-color
+BUILD_TAG = jenkins-test-20
+VERSIONER_PERL_VERSION = 5.10.0
+GIT_COMMIT = c6a1fa91eed321befcff1ebf355bf9a3037d6dfb
+HOME = /Users/jeslyvarghese
+JENKINS_SERVER_COOKIE = 7bb74550384c6431c9cbd6a1bc24d15d
+HUDSON_COOKIE = 7464627a-cda0-453d-a4e3-59ffb5276e84
+JAVA_MAIN_CLASS_7310 = Main
+DISPLAY = /tmp/launch-C0MifB/org.x:0
+BUILD_NUMBER = 20
+IRBRC = /Users/jeslyvarghese/.rvm/rubies/jruby-1.6.7.2/.irbrc
+HUDSON_SERVER_COOKIE = 7bb74550384c6431c9cbd6a1bc24d15d
+WORKSPACE = /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace
+LC_CTYPE = UTF-8
+__CF_USER_TEXT_ENCODING = 0x1F6:0:0
+JAVA_ARCH = x86_64
+_ = /usr/bin/java
+EXECUTOR_NUMBER = 1
+rvm_version = 1.15.8 (stable)
+SHELL = /bin/bash
+TMPDIR = /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/
+JOB_NAME = test
+
+Output directory: '/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList-Release-1.0.ipa'
+Temporary Directory: '/var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/Uf0sRwY1oK'  (will NOT be deleted on exit when verbose set)
++ /bin/cp -Rp /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/Uf0sRwY1oK/Payload
+Program /bin/cp returned 0 : []
+### Checking original app
++ /usr/bin/codesign --verify -vvvv /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app
+Program /usr/bin/codesign returned 0 : [/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app: valid on disk
+/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app: satisfies its Designated Requirement
+]
+Done checking the original app
++ /usr/bin/codesign --verify -vvvv -R=anchor apple generic and (certificate 1[field.1.2.840.113635.100.6.2.1] exists and (certificate leaf[field.1.2.840.113635.100.6.1.2] exists or certificate leaf[field.1.2.840.113635.100.6.1.4] exists)) /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/Uf0sRwY1oK/Payload/GroceryList.app
+Program /usr/bin/codesign returned 0 : [/var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/Uf0sRwY1oK/Payload/GroceryList.app: valid on disk
+/var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/Uf0sRwY1oK/Payload/GroceryList.app: satisfies its Designated Requirement
+/var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/Uf0sRwY1oK/Payload/GroceryList.app: explicit requirement satisfied
+]
++ /usr/bin/zip --symlinks --verbose --recurse-paths /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList-Release-1.0.ipa .
+Program /usr/bin/zip returned 0 : [  adding: Payload/	(in=0) (out=0) (stored 0%)
+  adding: Payload/GroceryList.app/	(in=0) (out=0) (stored 0%)
+  adding: Payload/GroceryList.app/_CodeSignature/	(in=0) (out=0) (stored 0%)
+  adding: Payload/GroceryList.app/_CodeSignature/CodeResources	(in=852) (out=417) (deflated 51%)
+  adding: Payload/GroceryList.app/CodeResources	(in=28) (out=28) (stored 0%)
+  adding: Payload/GroceryList.app/embedded.mobileprovision	(in=12455) (out=7563) (deflated 39%)
+  adding: Payload/GroceryList.app/en.lproj/	(in=0) (out=0) (stored 0%)
+  adding: Payload/GroceryList.app/en.lproj/InfoPlist.strings	(in=42) (out=23) (deflated 45%)
+  adding: Payload/GroceryList.app/GroceryList	(in=27440) (out=8948) (deflated 67%)
+  adding: Payload/GroceryList.app/GroceryListView.nib	(in=1089) (out=720) (deflated 34%)
+  adding: Payload/GroceryList.app/Info.plist	(in=1104) (out=726) (deflated 34%)
+  adding: Payload/GroceryList.app/PkgInfo	(in=8) (out=8) (stored 0%)
+  adding: Payload/GroceryList.app/ResourceRules.plist	(in=485) (out=235) (deflated 52%)
+total bytes=43503, compressed=18668 -> 57% savings
+]
+Results at '/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList-Release-1.0.ipa' 
++ /bin/cp /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList-Release-1.0.ipa /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/5v809q7pxK
+Program /bin/cp returned 0 : []
++ /usr/bin/unzip -o /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/5v809q7pxK -d /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6
+Program /usr/bin/unzip returned 0 : [Archive:  /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/5v809q7pxK
+   creating: /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/
+   creating: /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app/
+   creating: /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app/_CodeSignature/
+  inflating: /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app/_CodeSignature/CodeResources  
+    linking: /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app/CodeResources  -> _CodeSignature/CodeResources 
+  inflating: /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app/embedded.mobileprovision  
+   creating: /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app/en.lproj/
+  inflating: /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app/en.lproj/InfoPlist.strings  
+  inflating: /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app/GroceryList  
+  inflating: /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app/GroceryListView.nib  
+  inflating: /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app/Info.plist  
+ extracting: /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app/PkgInfo  
+  inflating: /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app/ResourceRules.plist  
+finishing deferred symbolic links:
+  /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app/CodeResources -> _CodeSignature/CodeResources
+]
++ /usr/bin/codesign --verify -vvvv -R=anchor apple generic and (certificate 1[field.1.2.840.113635.100.6.2.1] exists and (certificate leaf[field.1.2.840.113635.100.6.1.2] exists or certificate leaf[field.1.2.840.113635.100.6.1.4] exists)) /var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app
+Program /usr/bin/codesign returned 0 : [/var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app: valid on disk
+/var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app: satisfies its Designated Requirement
+/var/folders/fN/fNwu0N9ZEYagYOj7f+ENb++++TM/-Tmp-/vg3SHI0hb6/Payload/GroceryList.app: explicit requirement satisfied
+]
+[Release-iphoneos] $ zip -r -T -y GroceryList-Release-1.0-dSYM.zip /Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app.dSYM
+updating: Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app.dSYM/ (stored 0%)
+updating: Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app.dSYM/Contents/ (stored 0%)
+updating: Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app.dSYM/Contents/Info.plist (deflated 53%)
+updating: Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app.dSYM/Contents/Resources/ (stored 0%)
+updating: Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app.dSYM/Contents/Resources/DWARF/ (stored 0%)
+updating: Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/work/jobs/test/workspace/build/Release-iphoneos/GroceryList.app.dSYM/Contents/Resources/DWARF/GroceryList (deflated 65%)
+test of GroceryList-Release-1.0-dSYM.zip OK
+Creating Manifest file from given informations
+Uploading the OTA Package to FTP Server
+ERROR: undefined local variable or method `file' for FTP:Module (NameError)
+/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/lib/ftp_upload.rb:11:in `upload'
+/Users/jeslyvarghese/Workspace/Jenkins/otabuilder-plugin/models/otabuilder_wrapper.rb:57:in `perform'
+/Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2/gems/jenkins-plugin-runtime-0.2.2/lib/jenkins/tasks/build_step_proxy.rb:14:in `perform'
+/Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2/gems/jenkins-plugin-runtime-0.2.2/lib/jenkins/tasks/build_step_proxy.rb:22:in `boolean_result'
+/Users/jeslyvarghese/.rvm/gems/jruby-1.6.7.2/gems/jenkins-plugin-runtime-0.2.2/lib/jenkins/tasks/build_step_proxy.rb:13:in `perform'
+
+[8mha:AAAAWB+LCAAAAAAAAABb85aBtbiIQSmjNKU4P08vOT+vOD8nVc8DzHWtSE4tKMnMz/PLL0ldFVf2c+b/lb5MDAwVRQxSaBqcITRIIQMEMIIUFgAAckCEiWAAAAA=[0mBuild step 'Upload Build and Mail OTA link' marked build as failure
+Finished: FAILURE
