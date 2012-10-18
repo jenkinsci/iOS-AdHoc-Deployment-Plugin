@@ -72,6 +72,11 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       end
       manifest_filename = File.basename manifest_file
       itms_link = "itms-services://?action=download-manifest&url=#{@ftp_host}#{@ftp_ota_dir}#{manifest_filename}"
+      listner.info itms_link
+      listner.info 'Emailing the client'
+      listner.info @gmail_user
+      listner.info @gmail_pass
+      listner.info @reciever_mail_id
       
       Emailer::send(@gmail_user,@gmail_pass,@reciever_mail_id,itms_link)
       
