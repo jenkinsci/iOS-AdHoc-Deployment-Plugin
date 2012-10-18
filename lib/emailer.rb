@@ -1,10 +1,15 @@
 require 'rubygems'
 require 'gmail'
 
-module Emailer
-  def self.send(username,password,reciever_mail_id,itms_link)
+
+  username = ARGV[0]
+  password = ARGV[1]
+  reciever_mail_id = ARGV[2]
+  itms_link = ARGV[3]
     Gmail.connect(username,password) do |gmail|
-      gmail.deliver do
+
+      email = gmail.compose do
+        
         to reciever_mail_id
         
         subject 'A new build for your product is available'
@@ -19,6 +24,8 @@ module Emailer
         end
         
       end
-    end
-  end
-end
+      
+    gmail.deliver email
+   end
+   
+  

@@ -1,9 +1,10 @@
 require 'rubygems'
 require 'require_relative'
+require 'pony'
 
 require_relative '../lib/plist_generator.rb'
 require_relative '../lib/ftp_upload.rb'
-require_relative '../lib/emailer.rb'
+
 
 class OtabuilderWrapper<Jenkins::Tasks::Publisher
   include Jenkins::Model::DescribableNative
@@ -22,6 +23,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
   attr_accessor :gmail_user
   attr_accessor :gmail_pass
   attr_accessor :reciever_mail_id
+  attr_accessor :http_translation
   
   def initialize(attrs)
     @ipa_path = attrs['ipa_path']
@@ -36,6 +38,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
     @gmail_user = attrs['gmail_user']
     @gmail_pass = attrs['gmail_pass']
     @reciever_mail_id = attrs['reciever_mail_id']
+    @http_translation = attrs['http_translation']
   end
   
   def needsToRunAfterFinalized
@@ -54,8 +57,11 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       ipa_filename = File.basename ipa_file
       icon_filename = File.basename icon_file
       
-      ipa_url = "#{@ftp_host}#{@ftp_ota_dir}#{ipa_filename}"
-      icon_url = "#{@ftp_host}#{@ftp_ota_dir}#{icon_filename}"
+      project = build.native.getProject.displayName
+      build_number = build.native.getNumber()
+      build_number = build_number.to_s
+      ipa_url = "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{ipa_filename}"
+      icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{icon_filename}"
       
       listner.info 'Creating Manifest file from given informations'
       
@@ -65,21 +71,37 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       listner.info 'Uploading the OTA Package to FTP Server'
 
       begin
-        FTP::upload @ftp_host, @ftp_user, @ftp_password, @ftp_ota_dir, [ipa_file,manifest_file] 
+        FTP::upload @ftp_host, @ftp_user, @ftp_password, @ftp_ota_dir, project,build_number,[ipa_file,manifest_file] 
       rescue
         listner.error "FTP Connection Refused, check the FTP Settings"
         build.halt
-      end
+       end
       manifest_filename = File.basename manifest_file
-      itms_link = "itms-services://?action=download-manifest&url=#{@ftp_host}#{@ftp_ota_dir}#{manifest_filename}"
+      itms_link = "itms-services://?action=download-manifest&url=#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{manifest_filename}"
+      itms_link = itms_link.gsub /\s*/,''
       listner.info itms_link
       listner.info 'Emailing the client'
-      listner.info @gmail_user
-      listner.info @gmail_pass
-      listner.info @reciever_mail_id
       
-      Emailer::send(@gmail_user,@gmail_pass,@reciever_mail_id,itms_link)
+      #itms_link = 'google.com'
       
-  end
+      Pony.mail({
+      
+          :to => @reciever_mail_id,
+          :from=>@gmail_user,
+          :subject => "A new build for your product #{project} is available. Build Number #{build_number}",
+          :html_body=> "<p>Hi,</p><p>A new build is avaiable for <a href='#{itms_link}'>download</a></p>Regards,<br/>Jenkins",
+          :via => :smtp,
+          :via_options => {
+            :address              => 'smtp.gmail.com',
+            :port                 => '587',
+            :enable_starttls_auto => true,
+            :user_name            => @gmail_user,
+            :password             => @gmail_pass,
+            :authentication       => :plain # :plain, :login, :cram_md5, no auth by default
+        }
+        })
+        
+   end
+
   
 end
