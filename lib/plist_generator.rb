@@ -3,8 +3,8 @@ require 'plist'
 
 module Manifest
 
-  def self.create(ipa_url,image_url,bundle_identifier,bundle_version,title,template_name,build_path)
-    manifest = Plist::parse_xml "#{File.expand_path(Dir.pwd)}/resources/#{template_name}"
+  def self.create(ipa_url,image_url,bundle_identifier,bundle_version,title,build_path)
+    manifest = Plist::parse_xml "#{Dir.pwd}ManifestTemplate.plist"
 
     return nil if manifest.nil?
     

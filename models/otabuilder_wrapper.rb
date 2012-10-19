@@ -65,17 +65,17 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       
       listner.info 'Creating Manifest file from given informations'
       
-      manifest_file = Manifest::create ipa_url,icon_url,@bundle_identifier,@bundle_version,@title,'ManifestTemplate.plist',File.dirname(ipa_file)
+      manifest_file = Manifest::create ipa_url,icon_url,@bundle_identifier,@bundle_version,@title,File.dirname(ipa_file)
 
       listner.info manifest_file
       listner.info 'Uploading the OTA Package to FTP Server'
 
-      begin
+      #begin
         FTP::upload @ftp_host, @ftp_user, @ftp_password, @ftp_ota_dir, project,build_number,[ipa_file,manifest_file] 
-      rescue
-        listner.error "FTP Connection Refused, check the FTP Settings"
-        build.halt
-       end
+      #rescue
+       # listner.error "FTP Connection Refused, check the FTP Settings"
+       # build.halt
+       #end
       manifest_filename = File.basename manifest_file
       itms_link = "itms-services://?action=download-manifest&url=#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{manifest_filename}"
       itms_link = itms_link.gsub /\s*/,''
