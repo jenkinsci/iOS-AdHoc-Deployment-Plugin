@@ -6,7 +6,7 @@ require_relative '../lib/plist_generator.rb'
 
 class PlistGeneratorTest<Test::Unit::TestCase
   def test_plist_generator
-    filepath =  Manifest::create 'fooUrl','fooImagePath','fooBundleIdentifier','1.0','fooBar','ManifestTemplate.plist','/tmp/'
+    filepath =  Manifest::create 'fooUrl','fooImagePath','fooBundleIdentifier','1.0','fooBar','/tmp/'
     assert_not_nil(filepath)
     assert(FileTest.exist? '/tmp/fooBar_1_0.plist')
     

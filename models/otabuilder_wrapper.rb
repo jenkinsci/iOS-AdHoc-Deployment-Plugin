@@ -62,46 +62,20 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       build_number = build_number.to_s
       ipa_url = "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{ipa_filename}"
       icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{icon_filename}"
-      
-      listner.info 'Creating Manifest file from given informations'
-      
+           
       manifest_file = Manifest::create ipa_url,icon_url,@bundle_identifier,@bundle_version,@title,File.dirname(ipa_file)
-
-      listner.info manifest_file
-      listner.info 'Uploading the OTA Package to FTP Server'
-
+     
       #begin
         FTP::upload @ftp_host, @ftp_user, @ftp_password, @ftp_ota_dir, project,build_number,[ipa_file,manifest_file] 
       #rescue
        # listner.error "FTP Connection Refused, check the FTP Settings"
        # build.halt
        #end
+      
       manifest_filename = File.basename manifest_file
       itms_link = "itms-services://?action=download-manifest&url=#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{manifest_filename}"
       itms_link = itms_link.gsub /\s*/,''
-      listner.info itms_link
-      listner.info 'Emailing the client'
-      
-      #itms_link = 'google.com'
-      
-      Pony.mail({
-      
-          :to => @reciever_mail_id,
-          :from=>@gmail_user,
-          :subject => "A new build for your product #{project} is available. Build Number #{build_number}",
-          :html_body=> "<p>Hi,</p><p>A new build is avaiable for <a href='#{itms_link}'>download</a></p>Regards,<br/>Jenkins",
-          :via => :smtp,
-          :via_options => {
-            :address              => 'smtp.gmail.com',
-            :port                 => '587',
-            :enable_starttls_auto => true,
-            :user_name            => @gmail_user,
-            :password             => @gmail_pass,
-            :authentication       => :plain # :plain, :login, :cram_md5, no auth by default
-        }
-        })
+      listner.info itms_link  
+  end
         
-   end
-
-  
 end
