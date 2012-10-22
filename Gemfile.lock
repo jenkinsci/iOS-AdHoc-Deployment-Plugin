@@ -2,40 +2,23 @@ GEM
   remote: http://rubygems.org/
   specs:
     ansi (1.4.3)
-    bouncy-castle-java (1.5.0146.1)
-    i18n (0.6.1)
     jenkins-plugin-runtime (0.2.2)
       json
       slop (~> 3.0.2)
-    jruby-openssl (0.7.7)
-      bouncy-castle-java (>= 1.5.0146.1)
     json (1.7.5-java)
-    mail (2.4.4)
-      i18n (>= 0.4.0)
-      mime-types (~> 1.16)
-      treetop (~> 1.4.8)
-    mime-types (1.19)
     plist (3.1.0)
-    polyglot (0.3.3)
-    pony (1.4)
-      mail (> 2.0)
     require_relative (1.0.3)
     rubytest (0.5.2)
       ansi
     slop (3.0.4)
     test (0.3.1)
       rubytest
-    treetop (1.4.11)
-      polyglot
-      polyglot (>= 0.3.1)
 
 PLATFORMS
   java
 
 DEPENDENCIES
   jenkins-plugin-runtime (~> 0.2.0)
-  jruby-openssl
   plist
-  pony
   require_relative
   test

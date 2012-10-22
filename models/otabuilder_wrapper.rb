@@ -1,8 +1,7 @@
 require 'rubygems'
 require 'require_relative'
-require 'pony'
 require 'net/http'
-
+require 'open-uri'
 require_relative '../lib/plist_generator.rb'
 require_relative '../lib/ftp_upload.rb'
 
@@ -77,7 +76,9 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       itms_link = "itms-services://?action=download-manifest&url=#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{manifest_filename}"
       itms_link = itms_link.gsub /\s*/,''
       listner.info itms_link  
-      Net::HTTP.get 'http://otabuilder.herokuapp.com/', "email?user_id=#{@gmail_user}&pwd=#{@gmail_pass}&reciever=#{@reciever_mail_id}&itms_linl=#{itms_link}"
+      itms_lin = URI::encode(itms_link)
+      listner.info "mail?user_id=#{@gmail_user}&pwd=#{@gmail_pass}&reciever=#{@reciever_mail_id}&itms_link=#{itms_link}&product=#{project}&build_number=#{build_number}"
+      listner.info Net::HTTP.get 'http://otabuilder.herokuapp.com/', "mail?user_id=#{@gmail_user}&pwd=#{@gmail_pass}&reciever=#{@reciever_mail_id}&itms_link=#{itms_link}&product=#{project}&build_number=#{build_number}"
   end
         
 end
