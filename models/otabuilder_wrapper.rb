@@ -66,7 +66,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       manifest_file = Manifest::create ipa_url,icon_url,@bundle_identifier,@bundle_version,@title,File.dirname(ipa_file)
      
       #begin
-        FTP::upload @ftp_host, @ftp_user, @ftp_password, @ftp_ota_dir, project,build_number,[ipa_file,manifest_file] 
+        FTP::upload @ftp_host, @ftp_user, @ftp_password, @ftp_ota_dir, project,build_number,[ipa_file,manifest_file,icon_file] 
       #rescue
        # listner.error "FTP Connection Refused, check the FTP Settings"
        # build.halt
@@ -76,9 +76,10 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       itms_link = "itms-services://?action=download-manifest&url=#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{manifest_filename}"
       itms_link = itms_link.gsub /\s*/,''
       listner.info itms_link  
-      itms_lin = URI::encode(itms_link)
-      listner.info "mail?user_id=#{@gmail_user}&pwd=#{@gmail_pass}&reciever=#{@reciever_mail_id}&itms_link=#{itms_link}&product=#{project}&build_number=#{build_number}"
-      listner.info Net::HTTP.get 'http://otabuilder.herokuapp.com/', "mail?user_id=#{@gmail_user}&pwd=#{@gmail_pass}&reciever=#{@reciever_mail_id}&itms_link=#{itms_link}&product=#{project}&build_number=#{build_number}"
+      itms_link = URI::escape(itms_link,Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+      
+      listner.info "http://otabuilder.herokuapp.com/mail?user_id=#{@gmail_user}&pwd=#{@gmail_pass}&reciever=#{@reciever_mail_id}&itms_link=#{itms_link}&product=#{project}&build_number=#{build_number}"
+      listner.info Net::HTTP.get_response(URI("http://otabuilder.herokuapp.com/mail?user_id=#{@gmail_user}&pwd=#{@gmail_pass}&reciever=#{@reciever_mail_id}&itms_link=#{itms_link}&product=#{project}&build_number=#{build_number}"))
   end
         
 end
