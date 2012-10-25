@@ -4,78 +4,83 @@
   	f.entry(:title=>'IPA File Path',
   			:field=>'ipa_path',
   			:description=>'You need to tell the IPA files path along with the file name which needs to be uploaded to ftp-server and OTA link to be mailed'
-  		   ) do  f.textbox
+  		   ) do  
+  		   	f.textbox :clazz=>'required'#, :default'${WORKSPACE}'
     end
     
     f.entry(:title=>'Icon file path',
     	    :field=>'icon_path',
     	    :description=>'Enter the icon file path relative to project workspace'
-    	   ) do f.textbox
+    	   ) do f.textbox :clazz=>'required'
     end
     
     f.entry(:title=>'Bundle Identifier',
     		:field=>'bundle_identifier',
     		:description=>'Provide the bundle identifier as described in XCode for the project, wrong bundle identifier can cause the OTA link not to work'
-    		) do f.textbox
+    		) do f.textbox :clazz=>'required'
     end
     
     f.entry(:title=>'Bundle Version',
     		:field=>'bundle_version',
     		:description=>'Provide the version for your current build'
-    		) do f.textbox
+    		) do f.textbox :clazz=>'required'
     end
     
     f.entry(:title=>'Title',
     		:field=>'title',
     		:description=>'Enter your applications title here'
-    		)do f.textbox
+    		)do f.textbox :clazz=>'required'
     end
     
     f.entry(:title=>'FTP OTA Directory',
     		:field=>'ftp_ota_dir',
     		:description=>'Enter the ftp directory in which the ota build link is to be saved'
-    		) do f.textbox
+    		) do f.textbox :clazz=>'required'
     end
     
     f.entry(:title=>'FTP Hostname',
     		:field=>'ftp_host',
     		:description=>'Enter the ftp hostname here'
-    		) do f.textbox
+    		) do f.textbox :clazz=>'required'
     end
     
     f.entry(:title=>'FTP Username',
     		:field=>'ftp_user',
     		:description=>'Enter the ftp username here'
-    		) do f.textbox
+    		) do f.textbox :clazz=>'required'
     end
     
     f.entry(:title=>'FTP Password',
     		:field=>'ftp_password',
     		:description=>'Enter the ftp hostname here'
-    		) do f.password
+    		) do f.password :clazz=>'required'
     end
     
     f.entry(:title=>'GMail Username',
     		:field=>'gmail_user',
     		:description=>'The GMail ID from which the email to reciver is to be sent'
-    		) do f.textbox
+    		) do f.textbox :clazz=> 'required'
     end
     
     f.entry(:title=>'GMail Password',
     		:field=>'gmail_pass',
     		:description=>'The password to the GMail account'
-    		) do f.password
+    		) do f.password :clazz=>'required'
     end
     
     f.entry(:title=>'Reciever Mail Address',
     		:field=>'reciever_mail_id'
-    		) do f.textbox
+    		) do f.textbox :clazz=>'required'
     end
     
     f.entry(:title=>'HTTP Translation Link',
     		:field=>'http_translation'
-    		)do f.textbox
+    		)do f.textbox :clazz=>'required'
     end
-    
+    f.entry(:title=>'Email Content',
+    		:description=>'Enter the content for your email here, add #{itms_link} where you want the itms link to be added. It should be in HTML',
+    		:field=>'mail_body'
+    		)do f.textarea
+    end
   end
 %>

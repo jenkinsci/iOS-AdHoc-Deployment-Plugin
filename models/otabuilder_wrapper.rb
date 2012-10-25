@@ -4,7 +4,7 @@ require 'net/http'
 require 'open-uri'
 require_relative '../lib/plist_generator.rb'
 require_relative '../lib/ftp_upload.rb'
-
+require_relative '../lib/ipa_search.rb'
 
 class OtabuilderWrapper<Jenkins::Tasks::Publisher
   include Jenkins::Model::DescribableNative
@@ -24,7 +24,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
   attr_accessor :gmail_pass
   attr_accessor :reciever_mail_id
   attr_accessor :http_translation
-  
+  attr_accessor :mail_body
   def initialize(attrs)
     @ipa_path = attrs['ipa_path']
     @icon_path = attrs['icon_path']
@@ -39,6 +39,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
     @gmail_pass = attrs['gmail_pass']
     @reciever_mail_id = attrs['reciever_mail_id']
     @http_translation = attrs['http_translation']
+    @mail_body  = attrs['mail_body']
   end
   
   def needsToRunAfterFinalized
@@ -52,7 +53,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
   def perform(build,launcher,listner)
       
       workspace_path = build.native.getProject.getWorkspace() #get the workspace path
-      ipa_file = "#{workspace_path}/#{@ipa_path}"
+      ipa_file = IPASearch::find_in "#{workspace_path}/#{@ipa_path}"
       icon_file = "#{workspace_path}/#{@icon_path}"
       ipa_filename = File.basename ipa_file
       icon_filename = File.basename icon_file
@@ -61,8 +62,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       build_number = build.native.getNumber()
       build_number = build_number.to_s
       ipa_url = "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{ipa_filename}"
-      icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{icon_filename}"
-           
+      icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{icon_filename}" 
       manifest_file = Manifest::create ipa_url,icon_url,@bundle_identifier,@bundle_version,@title,File.dirname(ipa_file)
      
       #begin
@@ -77,9 +77,9 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       itms_link = itms_link.gsub /\s*/,''
       listner.info itms_link  
       itms_link = URI::escape(itms_link,Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
-      
+      mail_body = URI::escape(@mail_body,Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
       listner.info "http://otabuilder.herokuapp.com/mail?user_id=#{@gmail_user}&pwd=#{@gmail_pass}&reciever=#{@reciever_mail_id}&itms_link=#{itms_link}&product=#{project}&build_number=#{build_number}"
-      listner.info Net::HTTP.get_response(URI("http://otabuilder.herokuapp.com/mail?user_id=#{@gmail_user}&pwd=#{@gmail_pass}&reciever=#{@reciever_mail_id}&itms_link=#{itms_link}&product=#{project}&build_number=#{build_number}"))
+      listner.info Net::HTTP.get_response(URI("http://otabuilder.herokuapp.com/mail?user_id=#{@gmail_user}&pwd=#{@gmail_pass}&reciever=#{@reciever_mail_id}&itms_link=#{itms_link}&product=#{project}&build_number=#{build_number}&mail_body=#{mail_body}"))
   end
         
 end
