@@ -16,7 +16,7 @@ The working of this plugin can be summarized like this.
 
 ![OTA Plugin Screnshot](https://raw.github.com/sourcebits-jesly/otabuilder-plugin/master/resources/screenshot.png "Screenshot of OTA Builder in Jenkins Project Configuration Page")
 
-###What needs to be done to have the plugin on my machine.
+###What needs to be done to have the plugin on my machine?
 
 *  First you need to have, [ruby-runtime-plugin](https://github.com/jenkinsci/ruby-runtime-plugin) installed in your Jenkins Server.
 *  Install jruby [1.6.7](http://jruby.org/2012/02/22/jruby-1-6-7) on your system.
@@ -46,3 +46,6 @@ The working of this plugin can be summarized like this.
 
 Go ahead and [fork](https://github.com/sourcebits-jesly/otabuilder-plugin/fork_select) this!
 
+##License
+
+I will update this soon!
