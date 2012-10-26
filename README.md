@@ -14,7 +14,7 @@ The working of this plugin can be summarized like this.
 
 ##How it looks?
 
-![OTA Plugin Screnshot](https://raw.github.com/sourcebits-jesly/otabuilder-plugin/master/resources/screenshot.png,"Screenshot of OTA Builder in Jenkins Project Configuration Page")
+![OTA Plugin Screnshot](https://raw.github.com/sourcebits-jesly/otabuilder-plugin/master/resources/screenshot.png "Screenshot of OTA Builder in Jenkins Project Configuration Page")
 
 ##What needs to be done to have the plugin on my machine.
 
