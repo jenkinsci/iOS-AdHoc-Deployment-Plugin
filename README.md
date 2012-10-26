@@ -1,5 +1,5 @@
 #OTA Plugin
 -----------
 This repository contains sources to ota-plugins for Jenkins-CI.
-![OTA Plugin Screnshot](http://speedypic.net/di-H2ZL.png,"OTA Plugin UI")
+![OTA Plugin Screnshot](sourcebits-jesly.github.com/otabuilder-plugin/resources/screenshot.png)
 ##Will be updated soon
