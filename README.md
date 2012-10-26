@@ -22,10 +22,13 @@ The working of this plugin can be summarized like this.
 *  Install jruby [1.6.7](http://jruby.org/2012/02/22/jruby-1-6-7) on your system.
 *  [Clone](github-mac://openRepo/https://github.com/sourcebits-jesly/otabuilder-plugin) this project.
 *  Have bundler gem installed 
+     
      `$gem install bundler --version 1.1.0`
 *  Run bundle install in the otabuilder-plugin clone directory
+     
      `$bundle install` 
 *  Run jpi build
+     
      `$jpi build`
 *  You will, have a `pkg` folder generated.
 *  Go to Jenkins and `Manage Jenkins>Advanced>Upload Plugin` and Uploaf the .hpi file
