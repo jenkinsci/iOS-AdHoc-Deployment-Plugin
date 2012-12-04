@@ -5,7 +5,8 @@ require 'open-uri'
 require_relative '../lib/plist_generator.rb'
 require_relative '../lib/ftp_upload.rb'
 require_relative '../lib/ipa_search.rb'
-
+#Added Mailer Class, to remove the heroku script coupling
+require_relative '../lib/mailer.rb'
 class OtabuilderWrapper<Jenkins::Tasks::Publisher
   include Jenkins::Model::DescribableNative
   
@@ -72,6 +73,16 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
        # build.halt
        #end
       
+      #Test this part is working 
+      mail = JenkinsMail.new.mail
+      mail.compose {
+        :to => @reciever_mail_id,
+        :from =>@sender_mail_id,
+        :subject => "Latest Build",
+        :html_body=> @mail_body
+      }
+      mail.send
+      #If above works, delete the following parts
       manifest_filename = File.basename manifest_file
       itms_link = "itms-services://?action=download-manifest&url=#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{manifest_filename}"
       itms_link = itms_link.gsub /\s*/,''

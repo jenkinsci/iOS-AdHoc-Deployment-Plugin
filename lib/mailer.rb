@@ -14,13 +14,8 @@ require_relative "Mailer/mail.rb"
 
 class JenkinsMail<SMTP
 	include 'Mail'
-	
-	def initialize
 
+	def compose 
+		yield 
 	end
-
-	def mail
-
-	end
-
 end

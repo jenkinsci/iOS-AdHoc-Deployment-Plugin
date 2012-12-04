@@ -11,14 +11,11 @@
 
 module Mail
 
-	
-
 	def mail
 		#give values to all those subtle variables needed here.
-
 		@charset = 'UTF-8'
 		@text_part_charset = 'UTF-8'
-		
+		@headers = nil
 	end
 
 end
