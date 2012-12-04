@@ -1,4 +1,4 @@
-##Over The Air Transmission Link Builder Helper Plugin For Jenkins-CI
+##Over-the-Air Ad Hoc Deployment Plugin For iOS
 
 The OTA Builder & Uploader Plugin automates the process of building the OTA package for your XCode Project, Uploading it and Mailing the client. The plugin is built on JRuby.
 
