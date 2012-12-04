@@ -25,6 +25,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
   attr_accessor :reciever_mail_id
   attr_accessor :http_translation
   attr_accessor :mail_body
+  
   def initialize(attrs)
     @ipa_path = attrs['ipa_path']
     @icon_path = attrs['icon_path']

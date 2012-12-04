@@ -16,13 +16,9 @@ java_import hudson.tasks.Mailer
 #i choose the latter
 
 class Mail
-
-	def initialize
-	end
-
-	def mail
-	end
-
+  
+  attr_accessor :to, :cc, :bcc, :from, :body, :html_body, :subject, :charset, :text_part_charset, :attachments, :headers, :sender, :reply_to
+  
 end
 
 class MailConfiguration
@@ -30,23 +26,11 @@ class MailConfiguration
 	attr_accessor :user_name, :password, :server, :port
 
 end
-
 class SMTP<MailConfiguration
-
-	attr_accessor :mail
-
-	def initialize(mail)
-		mail_descriptor = Mail.descriptor()
-
-		@user_name = mail_descriptor.getSmtpAuthUserName()
-		@password  = mail_descriptor.getSmtpAuthPassword()
-		@server    = mail_descriptor.getSmtpServer()
-		@port      = mail_descriptor.getSmtpPort()
-		
-		@mail      = mail
-	end
-
-	def send
+	
+  attr_accessor :mail
+  
+  def send
 		Pony.mail({
 				:to => mail.to,
 				:cc => mail.cc,
@@ -79,6 +63,24 @@ class SMTP<MailConfiguration
 
 				}
 			})
+	end
+  
+end
+
+class JenkinsSMTP<SMTP
+
+	def initialize(mail)
+		
+    super 
+    
+    mail_descriptor = Mail.descriptor()
+
+		@user_name = mail_descriptor.getSmtpAuthUserName()
+		@password  = mail_descriptor.getSmtpAuthPassword()
+		@server    = mail_descriptor.getSmtpServer()
+		@port      = mail_descriptor.getSmtpPort()
+		
+		@mail      = mail
 	end
 
 end
