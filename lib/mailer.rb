@@ -7,14 +7,15 @@
 #This class sends a mail to the specified set of people.
 
 require "rubygems"
-require "java"
-require "pony"
+require "require_relative"
 
-java_import hudson.tasks.Mailer
+require_relative "Mailer/smtp_mail.rb"
+require_relative "Mailer/mail.rb"
 
-#this could have been done in two ways, either use native java methods or go for rb methods
-#i choose the latter
+class JenkinsMail<SMTP
+	include 'Mail'
 
+<<<<<<< HEAD
 class Mail
   
   attr_accessor :to, :cc, :bcc, :from, :body, :html_body, :subject, :charset, :text_part_charset, :attachments, :headers, :sender, :reply_to
@@ -83,4 +84,7 @@ class JenkinsSMTP<SMTP
 		@mail      = mail
 	end
 
+	def compose 
+		yield 
+	end
 end
