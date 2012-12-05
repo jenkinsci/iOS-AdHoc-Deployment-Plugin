@@ -9,7 +9,7 @@
 #this could have been done in two ways, either use native java methods or go for rb methods
 #i choose the latter
 
-class NotificationMail
+class NotificationMail<SMTP
 	
   attr_accessor :to,
               	:cc,
@@ -33,6 +33,42 @@ class NotificationMail
 		@headers = nil
 	end
 
+	def send
+		
+		Pony.mail({
+				:to => @to,
+				:cc => @cc,
+				:bcc=> @bcc,
+
+				:from=> @from,
+
+				:body => @body,
+				:html_body => @html_body,
+
+				:subject => @subject,
+
+				:charset => @charset,
+				:text_part_charset => @text_part_charset,
+
+				:attachments => @attachments,
+
+				:headers => @headers,
+				:sender => @sender,
+				:reply_to => @reply_to,
+
+				:via =>:smtp,
+				:via_options =>{
+					:address => @server,
+					:port    => @port,
+					:enable_starttls_auto => true,
+					:user_name => @user_name,
+					:password => @password,
+					:authentication => :plain
+
+				}
+			})
+	end
+  
 end
 
 

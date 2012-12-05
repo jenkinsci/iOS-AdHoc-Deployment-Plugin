@@ -77,11 +77,13 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       #Test this part is working 
       mail = JenkinsMail.new
       
-      mail.compose do |my_mail|
-        my_mail.to =  @reciever_mail_id
-        my_mail.from = @sender_mail_id
-        my_mail.subject =  "Latest Build"
-        my_mail.html_body= @mail_body
+      mail.compose do 
+        {
+          :to =>  @reciever_mail_id,
+          :from => @sender_mail_id,
+          :subject =>  "Latest Build",
+          :html_body=> @mail_body
+        }
       end
       
       mail.send

@@ -21,51 +21,12 @@ class SMTP<MailConfiguration
 
 	attr_accessor :mail
 
-	def initialize(mail)
-		mail_descriptor = Mail.descriptor()
-
+	def initialize
+		mail_descriptor = Java.hudson.tasks.Mailer.DescriptorImpl.descriptor()
 		@user_name = mail_descriptor.getSmtpAuthUserName()
 		@password  = mail_descriptor.getSmtpAuthPassword()
 		@server    = mail_descriptor.getSmtpServer()
 		@port      = mail_descriptor.getSmtpPort()
-		
-		@mail      = mail
 	end
-
-	def send
-		
-		Pony.mail({
-				:to => mail.to,
-				:cc => mail.cc,
-				:bcc=> mail.bcc,
-
-				:from=>mail.from,
-
-				:body => mail.body,
-				:html_body => mail.html_body,
-
-				:subject => mail.subject,
-
-				:charset => mail.charset,
-				:text_part_charset => mail.text_part_charset,
-
-				:attachments => mail.attchments,
-
-				:headers => mail.headers,
-				:sender => mail.sender,
-				:reply_to => mail.reply_to,
-
-				:via =>:smtp,
-				:via_options =>{
-					:address => @server,
-					:port    => @port,
-					:enable_starttls_auto => true,
-					:user_name => @user_name,
-					:password => @password,
-					:authentication => :plain
-
-				}
-			})
-	end
-
+  
 end
