@@ -13,13 +13,13 @@ require_relative "Mailer/smtp_mail.rb"
 require_relative "Mailer/mail.rb"
 
 class JenkinsMail<NotificationMail
-  attr_acessor :mail
+  
   def compose
-    yield @mail
+    mail_parameters = yield
+    
+    mail_parameters.each do  |parameter,value|
+      self.instance_variable_set("@#{parameter}",value)
+    end
   end
   
-  def send
-    smtp_mail = SMTP.new(@mail)
-    smtp_mail.send
-  end
 end
