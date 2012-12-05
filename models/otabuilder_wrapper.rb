@@ -76,12 +76,14 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       
       #Test this part is working 
       mail = JenkinsMail.new
+      
       mail.compose do |my_mail|
         my_mail.to =  @reciever_mail_id
         my_mail.from = @sender_mail_id
         my_mail.subject =  "Latest Build"
         my_mail.html_body= @mail_body
       end
+      
       mail.send
       #If above works, delete the following parts
       manifest_filename = File.basename manifest_file
