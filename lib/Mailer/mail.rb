@@ -3,14 +3,15 @@
 #Part of OTA-Builder and Uploader Plugin For iOS Project
 #Developed as a part of CI-Project @ Sourcebits LLC
 
-#Mail Module
+#Mail Class
 #This class sends a mail to the specified set of people.
 
 #this could have been done in two ways, either use native java methods or go for rb methods
 #i choose the latter
 
 class Mail
-	attr_accessor :to,
+	
+  attr_accessor :to,
               	:cc,
               	:bcc,
               	:from,
@@ -24,7 +25,8 @@ class Mail
               	:sender,
               	:reply_to
   
-	def intialize
+	
+  def intialize
 		#give values to all those subtle variables needed here.
 		@charset = 'UTF-8'
 		@text_part_charset = 'UTF-8'
