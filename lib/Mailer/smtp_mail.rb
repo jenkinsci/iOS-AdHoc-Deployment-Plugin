@@ -12,7 +12,7 @@ require "require_relative"
 require "java"
 require "pony"
 
-java_import hudson.tasks.Mailer
+java_import Java.hudson.tasks.Mailer
 
 require_relative "configuration.rb"
 
