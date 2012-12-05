@@ -12,14 +12,14 @@ require "require_relative"
 require_relative "Mailer/smtp_mail.rb"
 require_relative "Mailer/mail.rb"
 
-class JenkinsMail<Mail
-  
+class JenkinsMail<NotificationMail
+  attr_acessor :mail
   def compose
     yield @mail
   end
   
   def send
-    smtp_mail = SMTP.new(mail)
+    smtp_mail = SMTP.new(@mail)
     smtp_mail.send
   end
 end

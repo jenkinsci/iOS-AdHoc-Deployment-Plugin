@@ -9,7 +9,7 @@
 #this could have been done in two ways, either use native java methods or go for rb methods
 #i choose the latter
 
-class Mail
+class NotificationMail
 	
   attr_accessor :to,
               	:cc,
