@@ -12,79 +12,14 @@ require "require_relative"
 require_relative "Mailer/smtp_mail.rb"
 require_relative "Mailer/mail.rb"
 
-class JenkinsMail<SMTP
-	include 'Mail'
-
-<<<<<<< HEAD
-class Mail
+class JenkinsMail<Mail
   
-  attr_accessor :to, :cc, :bcc, :from, :body, :html_body, :subject, :charset, :text_part_charset, :attachments, :headers, :sender, :reply_to
-  
-end
-
-class MailConfiguration
-
-	attr_accessor :user_name, :password, :server, :port
-
-end
-class SMTP<MailConfiguration
-	
-  attr_accessor :mail
+  def compose
+    yield @mail
+  end
   
   def send
-		Pony.mail({
-				:to => mail.to,
-				:cc => mail.cc,
-				:bcc=> mail.bcc,
-
-				:from=>mail.from,
-
-				:body => mail.body,
-				:html_body => mail.html_body,
-
-				:subject => mail.subject,
-
-				:charset => mail.charset,
-				:text_part_charset => mail.text_part_charset,
-
-				:attchments => mail.attchments,
-
-				:headers => mail.headers,
-				:sender => mail.sender,
-				:reply_to => mail.reply_to,
-
-				:via =>:smtp,
-				:via_options =>{
-					:address => @server,
-					:port    => @port,
-					:enable_starttls_auto => true,
-					:user_name => @user_name,
-					:password => @password,
-					:authentication => :plain
-
-				}
-			})
-	end
-  
-end
-
-class JenkinsSMTP<SMTP
-
-	def initialize(mail)
-		
-    super 
-    
-    mail_descriptor = Mail.descriptor()
-
-		@user_name = mail_descriptor.getSmtpAuthUserName()
-		@password  = mail_descriptor.getSmtpAuthPassword()
-		@server    = mail_descriptor.getSmtpServer()
-		@port      = mail_descriptor.getSmtpPort()
-		
-		@mail      = mail
-	end
-
-	def compose 
-		yield 
-	end
+    smtp_mail = SMTP.new(mail)
+    smtp_mail.send
+  end
 end
