@@ -124,6 +124,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
         ]
       end
       
+
       mail = JenkinsMail.new
       
       mail.compose do 
