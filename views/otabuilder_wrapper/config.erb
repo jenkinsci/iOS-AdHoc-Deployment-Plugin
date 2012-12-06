@@ -56,17 +56,6 @@
     		) do f.password :clazz=>'required'
     end
     
-    f.entry(:title=>'GMail Username',
-    		:field=>'gmail_user',
-    		:description=>'The GMail ID from which the email to reciver is to be sent'
-    		) do f.textbox :clazz=> 'required'
-    end
-    
-    f.entry(:title=>'GMail Password',
-    		:field=>'gmail_pass',
-    		:description=>'The password to the GMail account'
-    		) do f.password :clazz=>'required'
-    end
     
     f.entry(:title=>'Reciever Mail Address',
     		:field=>'reciever_mail_id'

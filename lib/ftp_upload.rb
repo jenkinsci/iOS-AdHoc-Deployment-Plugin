@@ -1,3 +1,13 @@
+#Jesly Varghese 2012
+
+#Part of OTA-Builder and Uploader Plugin For iOS Project
+#Developed as a part of CI-Project @ Sourcebits LLC
+
+#FTP Module
+#This class deals with the upload of ipa, manifest and icon to remote ftp server
+#Improvement needed, support for SFTP, Upload to dropbox, or using dropbox as ipa host is 
+#a viable option
+
 require 'rubygems'
 require 'net/ftp'
 
@@ -16,7 +26,13 @@ module FTP
     ftp.mkdir build_number
     ftp.chdir build_number
     
-    files.each { |file| ftp.putbinaryfile file, File.basename(file)  }
+    files.each do |file| 
+       begin
+        ftp.putbinaryfile file, File.basename(file)  
+       rescue
+        next
+       end
+    end
     
     ftp.quit
   end

@@ -30,7 +30,9 @@ class NotificationMail<SMTP
 		#give values to all those subtle variables needed here.
 		@charset = 'UTF-8'
 		@text_part_charset = 'UTF-8'
-		@headers = nil
+		@headers = "MIME-version: 1.0;
+					Content-Type: multipart/related;
+					boundary=Boundary;type=text/html"
 	end
 
 	def send

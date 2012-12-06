@@ -22,7 +22,7 @@ class SMTP<MailConfiguration
 	attr_accessor :mail
 
 	def initialize
-		mail_descriptor = Java.hudson.tasks.Mailer.DescriptorImpl.descriptor()
+		mail_descriptor = Java.hudson.tasks.Mailer.descriptor()
 		@user_name = mail_descriptor.getSmtpAuthUserName()
 		@password  = mail_descriptor.getSmtpAuthPassword()
 		@server    = mail_descriptor.getSmtpServer()
