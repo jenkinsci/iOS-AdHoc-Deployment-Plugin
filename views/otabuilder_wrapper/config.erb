@@ -3,15 +3,15 @@
   f.block do
   	f.entry(:title=>'IPA File Path',
   			:field=>'ipa_path',
-  			:description=>'You need to tell the IPA files path along with the file name which needs to be uploaded to ftp-server and OTA link to be mailed'
+  			:description=>'You need to tell the IPA files path along with the file name which needs to be uploaded to ftp-server and OTA link to be mailed. Defaults to workspace if nothing is provided'
   		   ) do  
-  		   	f.textbox :clazz=>'required'#, :default'${WORKSPACE}'
+  		   	f.textbox #, :default'${WORKSPACE}'
     end
     
     f.entry(:title=>'Icon file path',
     	    :field=>'icon_path',
     	    :description=>'Enter the icon file path relative to project workspace'
-    	   ) do f.textbox :clazz=>'required'
+    	   ) do f.textbox
     end
     
     f.entry(:title=>'Bundle Identifier',
@@ -62,12 +62,24 @@
     		) do f.textbox :clazz=>'required'
     end
     
+
     f.entry(:title=>'HTTP Translation Link',
     		:field=>'http_translation'
     		)do f.textbox :clazz=>'required'
     end
-    f.entry(:title=>'Email Content',
-    		:description=>'Enter the content for your email here, add #{itms_link} where you want the itms link to be added. It should be in HTML',
+    
+	f.entry(:title=>'Mail Subject',
+			:field=>'mail_subject'
+			) do f.textbox :clazz=>'required'
+	end
+	
+	f.entry(:title=>'Reply To',
+			:field=>'reply_to'
+			)do f.textbox
+	end
+	
+	f.entry(:title=>'Email Content',
+    		:description=>'Enter the content for your email here, add {itms_link} where you want the itms link to be added. Also you can make use of {build_number} and {project}. It can be in Markdown',
     		:field=>'mail_body'
     		)do f.textarea
     end

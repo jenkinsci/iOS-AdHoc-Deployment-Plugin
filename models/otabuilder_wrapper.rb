@@ -29,6 +29,8 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
   attr_accessor :reciever_mail_id
   attr_accessor :http_translation
   attr_accessor :mail_body
+  attr_accessor :mail_subject
+  attr_accessor :reply_to
   
   def initialize(attrs)
     @ipa_path = attrs['ipa_path']
@@ -42,6 +44,8 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
     @ftp_password = attrs['ftp_password']
     @reciever_mail_id = attrs['reciever_mail_id']
     @http_translation = attrs['http_translation']
+    @mail_subject = attrs['mail_subject']
+    @reply_to = attrs['reply_to']
     @mail_body  = attrs['mail_body']
   end
   
@@ -107,15 +111,28 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
 
       mail_body = MailParser::get_html mail_body
       
-
+      mail_subject = MailParser::substitute_variables @mail_subject do
+        [
+          {
+            :replace=>"{build_number}",
+            :with=>build_number
+          },
+          {
+            :replace=>"{project}",
+            :with=>project
+          }
+        ]
+      end
+      
       mail = JenkinsMail.new
       
       mail.compose do 
         {
           :to =>  @reciever_mail_id,
           :from => @sender_mail_id,
-          :subject =>  "A build for  #{project} is available for download",
-          :html_body=> mail_body
+          :subject =>  mail_subject,
+          :html_body=> mail_body,
+          :reply_to=> @reply_to
         }
       end
 
