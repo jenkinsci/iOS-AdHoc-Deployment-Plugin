@@ -56,18 +56,22 @@
     		) do f.password :clazz=>'required'
     end
     
-    
-    f.entry(:title=>'Reciever Mail Address',
-    		:field=>'reciever_mail_id'
-    		) do f.textbox :clazz=>'required'
-    end
-    
 
     f.entry(:title=>'HTTP Translation Link',
     		:field=>'http_translation'
     		)do f.textbox :clazz=>'required'
     end
     
+    f.entry(:title=>'Reciever Mail Address',
+    		:field=>'reciever_mail_id'
+    		) do f.textbox :clazz=>'required'
+    end
+    
+    f.entry(:title=>'BCC',
+    		:field=>'bcc'
+    		) do f.textbox 
+    end
+	
 	f.entry(:title=>'Mail Subject',
 			:field=>'mail_subject'
 			) do f.textbox :clazz=>'required'

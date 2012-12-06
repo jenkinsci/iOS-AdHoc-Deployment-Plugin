@@ -31,6 +31,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
   attr_accessor :mail_body
   attr_accessor :mail_subject
   attr_accessor :reply_to
+  attr_accessor :bcc
   
   def initialize(attrs)
     @ipa_path = attrs['ipa_path']
@@ -47,6 +48,8 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
     @mail_subject = attrs['mail_subject']
     @reply_to = attrs['reply_to']
     @mail_body  = attrs['mail_body']
+    @bcc = attrs['bcc']
+    
   end
   
   def needsToRunAfterFinalized
@@ -133,7 +136,8 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
           :from => @sender_mail_id,
           :subject =>  mail_subject,
           :html_body=> mail_body,
-          :reply_to=> @reply_to
+          :reply_to=> @reply_to,
+          :bcc=> @bcc
         }
       end
 
