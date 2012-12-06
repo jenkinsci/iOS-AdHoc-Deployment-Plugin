@@ -48,4 +48,4 @@ Go ahead and [fork](https://github.com/sourcebits-jesly/otabuilder-plugin/fork_s
 
 ##License
 
-I will update this soon!
+[MIT License](http://mit-license.org/)
