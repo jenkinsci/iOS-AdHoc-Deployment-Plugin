@@ -1,5 +1,14 @@
+#Jesly Varghese 2012
+
+#Part of OTA-Builder and Uploader Plugin For iOS Project
+#Developed as a part of CI-Project @ Sourcebits LLC
+#Manifest Module
+#Generate the manifest file for OTA
+
 require 'rubygems'
 require 'plist'
+
+#This module requires intense refactoring, like moving the plist tempalate to a seprate file.
 
 module Manifest
 
