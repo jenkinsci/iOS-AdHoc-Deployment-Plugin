@@ -1,8 +1,4 @@
 #Jesly Varghese 2012
-
-#Part of OTA-Builder and Uploader Plugin For iOS Project
-#Developed as a part of CI-Project @ Sourcebits LLC
-
 #FTP Module
 #This class deals with the upload of ipa, manifest and icon to remote ftp server
 #Improvement needed, support for SFTP, Upload to dropbox, or using dropbox as ipa host is 
