@@ -78,8 +78,12 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{icon_filename}" 
       manifest_file = Manifest::create ipa_url,icon_url,@bundle_identifier,@bundle_version,@title,File.dirname(ipa_file)
      
+      
+      server ={:hostname => @ftp_host, :username => @ftp_user, :pass => @ftp_password, :upload_path => @ftp_ota_dir}
+      project = {:name => project, :build_number => build_number}
+      
       #begin
-        FTP::upload @ftp_host, @ftp_user, @ftp_password, @ftp_ota_dir, project,build_number,[ipa_file,manifest_file,icon_file] 
+        FTP::upload server, project, ipa_file, manifest_file, icon_file 
       #rescue
        # listner.error "FTP Connection Refused, check the FTP Settings"
        # build.halt

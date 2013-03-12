@@ -8,19 +8,19 @@ require 'rubygems'
 require 'net/ftp'
 
 module FTP
-  def self.upload(hostname,username,pass,upload_path,project,build_number,files)
+  def self.upload(server, project, files)
     ftp = Net::FTP.new
     ftp.passive = true
-    ftp.connect hostname
-    ftp.login username, pass
-    ftp.chdir upload_path
+    ftp.connect server[:hostname]
+    ftp.login server[:username], server[:pass]
+    ftp.chdir server[:upload_path]
     
     dir_contents = ftp.nlst
-    ftp.mkdir project unless dir_contents.include? project
+    ftp.mkdir project unless dir_contents.include? project[:name]
     
-    ftp.chdir project
-    ftp.mkdir build_number
-    ftp.chdir build_number
+    ftp.chdir project[:name]
+    ftp.mkdir project[:build_number]
+    ftp.chdir project[:build_number]
     
     files.each do |file| 
        begin
