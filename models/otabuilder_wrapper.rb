@@ -8,6 +8,7 @@ require_relative '../lib/ftp_upload.rb'
 require_relative '../lib/ipa_search.rb'
 require_relative '../lib/mail_parser.rb'
 require_relative '../lib/mailer.rb'
+require_relative '../lib/data_from_ipa.rb'
 
 class OtabuilderWrapper<Jenkins::Tasks::Publisher
   
@@ -36,9 +37,6 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
   def initialize(attrs)
     @ipa_path = attrs['ipa_path']
     @icon_path = attrs['icon_path']
-    @bundle_identifier = attrs['bundle_identifier']
-    @bundle_version = attrs['bundle_version']
-    @title = attrs['title']
     @ftp_ota_dir = attrs['ftp_ota_dir']
     @ftp_host = attrs['ftp_host']
     @ftp_user = attrs['ftp_user']
@@ -48,8 +46,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
     @mail_subject = attrs['mail_subject']
     @reply_to = attrs['reply_to']
     @mail_body  = attrs['mail_body']
-    @bcc = attrs['bcc']
-    
+    @bcc = attrs['bcc'] 
   end
   
   def needsToRunAfterFinalized
@@ -76,10 +73,20 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       
       ipa_url = "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{ipa_filename}"
       icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{icon_filename}" 
+      
+      ipa_file_data_obj = IPAFileData.new
+      info_plist_path = ipa_file_data_obj.binary_plist_path_of ipa_url
+      
+      ipa_info_obj = IPA.new info_plist_path
+      
+      @bundle_identifier = ipa_info_obj.bundleidentifier
+      @bundle_version = ipa_info_obj.bundleversion
+      @title = ipa_info_obj.displayname
+      
       manifest_file = Manifest::create ipa_url,icon_url,@bundle_identifier,@bundle_version,@title,File.dirname(ipa_file)
      
       
-      server ={:hostname => @ftp_host, :username => @ftp_user, :pass => @ftp_password, :upload_path => @ftp_ota_dir}
+      server  = {:hostname => @ftp_host, :username => @ftp_user, :pass => @ftp_password, :upload_path => @ftp_ota_dir}
       project = {:name => project, :build_number => build_number}
       
       #begin

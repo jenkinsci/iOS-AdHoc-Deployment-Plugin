@@ -14,24 +14,6 @@
     	   ) do f.textbox
     end
     
-    f.entry(:title=>'Bundle Identifier',
-    		:field=>'bundle_identifier',
-    		:description=>'Provide the bundle identifier as described in XCode for the project, wrong bundle identifier can cause the OTA link not to work'
-    		) do f.textbox :clazz=>'required'
-    end
-    
-    f.entry(:title=>'Bundle Version',
-    		:field=>'bundle_version',
-    		:description=>'Provide the version for your current build'
-    		) do f.textbox :clazz=>'required'
-    end
-    
-    f.entry(:title=>'Title',
-    		:field=>'title',
-    		:description=>'Enter your applications title here'
-    		)do f.textbox :clazz=>'required'
-    end
-    
     f.entry(:title=>'FTP OTA Directory',
     		:field=>'ftp_ota_dir',
     		:description=>'Enter the ftp directory in which the ota build link is to be saved'
