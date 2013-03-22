@@ -76,8 +76,8 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       
       ipa_file_data_obj = IPAFileData.new
       info_plist_path = ipa_file_data_obj.binary_plist_path_of ipa_url
-      
-      ipa_info_obj = IPA.new info_plist_path
+      info_plist_contents = ipa_file_data_obj.contents_of_infoplist info_plist_path, ipa_url
+      ipa_info_obj = IPA.new info_plist_contents
       
       @bundle_identifier = ipa_info_obj.bundleidentifier
       @bundle_version = ipa_info_obj.bundleversion
