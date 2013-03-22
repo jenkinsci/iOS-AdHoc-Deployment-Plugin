@@ -29,7 +29,7 @@ class IPAFileData
     end
   end
   
-  def icon_file_with_name(icon_file_name, ipa_path)
+  def path_to_icon_file_with_name(icon_file_name, ipa_path)
     
     payload_path = payload_path_of ipa_path
     current_time = Time.new
