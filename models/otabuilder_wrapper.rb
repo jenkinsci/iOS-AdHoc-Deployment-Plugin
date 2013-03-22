@@ -62,9 +62,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       #project informations
       workspace_path = build.native.getProject.getWorkspace() #get the workspace path
       ipa_file = IPASearch::find_in "#{workspace_path}/#{@ipa_path}"
-      icon_file = "#{workspace_path}/#{@icon_path}"
       ipa_filename = File.basename ipa_file
-      icon_filename = File.basename icon_file
       
       #build informations
       project = build.native.getProject.displayName
@@ -83,6 +81,10 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       @bundle_version = ipa_info_obj.bundleversion
       @title = ipa_info_obj.displayname
       
+      icon_filename = ipa_info_obj.icon
+      
+      @icon_path = ipa_file_data_obj. path_to_icon_file_with_name icon_filename, ipa_url
+      
       manifest_file = Manifest::create ipa_url,icon_url,@bundle_identifier,@bundle_version,@title,File.dirname(ipa_file)
      
       
@@ -90,7 +92,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       project = {:name => project, :build_number => build_number}
       
       #begin
-        FTP::upload server, project, ipa_file, manifest_file, icon_file 
+        FTP::upload server, project, ipa_file, manifest_file, @icon_path 
       #rescue
        # listner.error "FTP Connection Refused, check the FTP Settings"
        # build.halt
