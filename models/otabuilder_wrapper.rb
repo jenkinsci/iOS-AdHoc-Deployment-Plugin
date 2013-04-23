@@ -17,7 +17,6 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
   display_name 'Upload Build and Mail OTA link'
   
   attr_accessor :ipa_path
-  attr_accessor :icon_path
   attr_accessor :bundle_identifier
   attr_accessor :bundle_version
   attr_accessor :title
@@ -36,7 +35,6 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
   
   def initialize(attrs)
     @ipa_path = attrs['ipa_path']
-    @icon_path = attrs['icon_path']
     @ftp_ota_dir = attrs['ftp_ota_dir']
     @ftp_host = attrs['ftp_host']
     @ftp_user = attrs['ftp_user']
