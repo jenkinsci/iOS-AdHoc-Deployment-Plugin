@@ -7,13 +7,7 @@
   		   ) do  
   		   	f.textbox #, :default'${WORKSPACE}'
     end
-    
-    f.entry(:title=>'Icon file path',
-    	    :field=>'icon_path',
-    	    :description=>'Enter the icon file path relative to project workspace'
-    	   ) do f.textbox
-    end
-    
+        
     f.entry(:title=>'FTP OTA Directory',
     		:field=>'ftp_ota_dir',
     		:description=>'Enter the ftp directory in which the ota build link is to be saved'
