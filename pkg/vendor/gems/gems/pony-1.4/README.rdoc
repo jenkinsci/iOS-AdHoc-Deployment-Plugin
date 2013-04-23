@@ -1,0 +1,185 @@
+= Pony, the express way to send email in Ruby
+
+== Overview
+
+Ruby no longer has to be jealous of PHP's mail() function, which can send an email in a single command.
+
+  Pony.mail(:to => 'you@example.com', :from => 'me@example.com', :subject => 'hi', :body => 'Hello there.')
+  Pony.mail(:to => 'you@example.com', :html_body => '<h1>Hello there!</h1>', :body => "In case you can't read html, Hello there.")
+  Pony.mail(:to => 'you@example.com', :cc => 'him@example.com', :from => 'me@example.com', :subject => 'hi', :body => 'Howsit!')
+
+Any option key may be omitted except for :to. For a complete list of options, see List Of Options section below.
+
+
+== Transport
+
+Pony uses /usr/sbin/sendmail to send mail if it is available, otherwise it uses SMTP to localhost.
+
+This can be over-ridden if you specify a via option:
+
+  Pony.mail(:to => 'you@example.com', :via => :smtp) # sends via SMTP
+
+  Pony.mail(:to => 'you@example.com', :via => :sendmail) # sends via sendmail
+
+You can also specify options for SMTP:
+
+  Pony.mail(:to => 'you@example.com', :via => :smtp, :via_options => {
+    :address        => 'smtp.yourserver.com',
+    :port           => '25',
+    :user_name      => 'user',
+    :password       => 'password',
+    :authentication => :plain, # :plain, :login, :cram_md5, no auth by default
+    :domain         => "localhost.localdomain" # the HELO domain provided by the client to the server
+  }
+
+Gmail example (with TLS/SSL)
+
+  Pony.mail(:to => 'you@example.com', :via => :smtp, :via_options => {
+    :address              => 'smtp.gmail.com',
+    :port                 => '587',
+    :enable_starttls_auto => true,
+    :user_name            => 'user',
+    :password             => 'password',
+    :authentication       => :plain, # :plain, :login, :cram_md5, no auth by default
+    :domain               => "localhost.localdomain" # the HELO domain provided by the client to the server
+  })
+
+And options for Sendmail:
+
+  Pony.mail(:to => 'you@example.com', :via => :smtp, :via_options => {
+    :location  => '/path/to/sendmail' # this defaults to 'which sendmail' or '/usr/sbin/sendmail' if 'which' fails
+    :arguments => '-t' # -t and -i are the defaults
+  }
+
+== Attachments
+
+You can attach a file or two with the :attachments option:
+
+  Pony.mail(..., :attachments => {"foo.zip" => File.read("path/to/foo.zip"), "hello.txt" => "hello!"})
+
+Note: An attachment's mime-type is set based on the filename (as dictated by the ruby gem mime-types).  So 'foo.pdf' has a mime-type of 'application/pdf'
+
+== Custom Headers
+
+Pony allows you to specify custom mail headers
+  Pony.mail(
+    :to => 'me@example.com',
+    :headers => { "List-ID" => "...", "X-My-Custom-Header" => "what a cool custom header" }
+  )
+
+== List Of Options
+
+Options passed pretty much directly to Mail
+ to
+ cc
+ bcc
+ from
+ body # the plain text body
+ html_body # for sending html-formatted email
+ subject
+ charset # In case you need to send in utf-8 or similar
+ text_part_charset # for multipart messages, set the charset of the text part
+ attachments # see Attachments section above
+ headers # see Custom headers section above
+ message_id
+ sender  # Sets "envelope from" (and the Sender header)
+ reply_to
+
+Other options
+ via # :smtp or :sendmail, see Transport section above
+ via_options # specify transport options, see Transport section above
+
+== Set default options
+
+Default options can be set so that they don't have to be repeated. The default options you set will be overriden by any options you pass in to Pony.mail()
+
+  Pony.options = { :from => 'noreply@example.com', :via => :smtp, :via_options => { :host => 'smtp.yourserver.com' } }
+  Pony.mail(:to => 'foo@bar') # Sends mail to foo@bar from noreply@example.com using smtp
+  Pony.mail(:from => 'pony@example.com', :to => 'foo@bar') # Sends mail to foo@bar from pony@example.com using smtp
+
+== Help
+
+If you need help using Pony, or it looks like you've found a bug, we have a google group setup at: ponyrb@googlegroups.com.
+
+== External Dependencies
+
+mail > 2.0
+
+Note: these requirements are specified in the gemspec as well.  Also, you may need smtp_tls if you want to send via tls/ssl and are using ruby < 1.8.7
+
+== Meta
+
+Maintained by Ben Prew
+
+Written by Adam Wiggins
+
+Patches contributed by:
+Arun Thampi,
+Hiroshi Saito,
+Jesse Cooke,
+Mathieu Martin,
+Neil Mock,
+Nickolas Means,
+Othmane Benkirane,
+Rick Olson
+Stephen Celis,
+Thomas Hurst,
+Kalin Harvey
+Carl Hörberg
+
+Released under the MIT License: http://www.opensource.org/licenses/mit-license.php
+
+homepage: http://github.com/benprew/pony
+mailing list: ponyrb@googlegroups.com
+
+
+== Releases
+
+1.4
+* Updated docs
+
+1.3
+* Add new option :text_part_charset, which allows you to specify the charset for the text portion
+
+1.2
+* Remove limitations on :via, and let mail handle it (this means you can say things like :via => test)
+* Add reply-to option and a bundler file
+
+1.1
+* Add default options
+
+1.0
+* Convert to using Mail as the mail-generation backend, instead of TMail
+
+0.9.1
+* provide the ability to set custom mail headers with something like:
+	Pony.mail(:headers => {"List-ID" => "..."})
+* provide the ability to set the Message-Id from Pony.mail
+
+0.9
+* merge in kalin's fixes to use tmail.destinations instead of trying to parse tmail.to, tmail.cc and tmail.bcc.  New specs to test functionality
+
+0.8
+* Fix bug that was allowing nil :bcc and :cc options to be passed to smtp
+
+0.7
+* Pass :cc and :bcc options to sendmail appropriately
+
+0.6
+* Add :bcc capability
+* Add :charset capability
+* Add complete list of options to readme
+* fix bug: readme examples
+
+0.5
+* default location of sendmail to /usr/sbin/sendmail if sendmail not in path
+* fix bug: README not showing password option (listed as pass)
+
+0.4.1
+* Add :cc capability
+* fix bug: resolve body not displaying when attachments sent
+
+0.4
+* Implemented file attachments option
+* use TLS if :tls => true
+
