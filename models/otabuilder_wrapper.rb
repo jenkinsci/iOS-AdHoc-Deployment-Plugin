@@ -59,7 +59,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       
       #project informations
       workspace_path = build.native.getProject.getWorkspace() #get the workspace path
-      ipa_file = IPASearch::find_in "#{workspace_path}/#{@ipa_path}"
+      ipa_filepath = IPASearch::find_in "#{workspace_path}/#{@ipa_path}"
       ipa_filename = File.basename ipa_file
       
       #build informations
@@ -71,26 +71,36 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{icon_filename}" 
       
       ipa_file_data_obj = IPAFileData.new
-      info_plist_path = ipa_file_data_obj.binary_plist_path_of ipa_url
-      info_plist_contents = ipa_file_data_obj.contents_of_infoplist info_plist_path, ipa_url
+      info_plist_path = ipa_file_data_obj.binary_plist_path_of ipa_file
+      info_plist_contents = ipa_file_data_obj.contents_of_infoplist info_plist_path, ipa_filepath
       ipa_info_obj = IPA.new info_plist_contents
       
+      #manifest information
       @bundle_identifier = ipa_info_obj.bundleidentifier
       @bundle_version = ipa_info_obj.bundleversion
       @title = ipa_info_obj.displayname
       
       icon_filename = ipa_info_obj.icon
       
-      @icon_path = ipa_file_data_obj. path_to_icon_file_with_name icon_filename, ipa_url
+      @icon_path = ipa_file_data_obj.path_to_icon_file_with_name icon_filename, ipa_filepath
       
-      manifest_file = Manifest::create ipa_url,icon_url,@bundle_identifier,@bundle_version,@title,File.dirname(ipa_file)
+      manifest_file = Manifest::create ipa_url,icon_url, @bundle_identifier, @bundle_version, @title, File.dirname(ipa_filepath)
      
+      #upload information
+      server  = {
+                  :hostname => @ftp_host,
+                  :username => @ftp_user, 
+                  :pass => @ftp_password, 
+                  :upload_path => @ftp_ota_dir
+                }
       
-      server  = {:hostname => @ftp_host, :username => @ftp_user, :pass => @ftp_password, :upload_path => @ftp_ota_dir}
-      project = {:name => project, :build_number => build_number}
+      project = {
+                  :name => project, 
+                  :build_number => build_number
+                }
       
       #begin
-        FTP::upload server, project, ipa_file, manifest_file, @icon_path 
+        FTP::upload server, project, ipa_filepath, manifest_file, @icon_path 
       #rescue
        # listner.error "FTP Connection Refused, check the FTP Settings"
        # build.halt
@@ -122,7 +132,8 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
           }
         ]
       end
-
+      
+      #mailing information
       mail_body = MailParser::get_html mail_body
       
       mail_subject = MailParser::substitute_variables @mail_subject do
