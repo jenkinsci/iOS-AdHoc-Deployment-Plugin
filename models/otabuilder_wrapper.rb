@@ -60,7 +60,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       #project informations
       workspace_path = build.native.getProject.getWorkspace() #get the workspace path
       ipa_filepath = IPASearch::find_in "#{workspace_path}/#{@ipa_path}"
-      ipa_filename = File.basename ipa_file
+      ipa_filename = File.basename ipa_filepath
       
       #build informations
       project = build.native.getProject.displayName
@@ -71,7 +71,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{icon_filename}" 
       
       ipa_file_data_obj = IPAFileData.new
-      info_plist_path = ipa_file_data_obj.binary_plist_path_of ipa_file
+      info_plist_path = ipa_file_data_obj.binary_plist_path_of ipa_filepath
       info_plist_contents = ipa_file_data_obj.contents_of_infoplist info_plist_path, ipa_filepath
       ipa_info_obj = IPA.new info_plist_contents
       
