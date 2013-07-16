@@ -100,7 +100,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
                 }
       
       #begin
-        FTP::upload server, project, ipa_filepath, manifest_file, @icon_path 
+        FTP::upload server, project, [ipa_filepath, manifest_file, @icon_path] 
       #rescue
        # listner.error "FTP Connection Refused, check the FTP Settings"
        # build.halt

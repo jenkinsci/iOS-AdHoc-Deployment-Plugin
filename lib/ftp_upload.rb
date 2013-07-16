@@ -16,7 +16,7 @@ module FTP
     ftp.chdir server[:upload_path]
     
     dir_contents = ftp.nlst
-    ftp.mkdir project unless dir_contents.include? project[:name]
+    ftp.mkdir project[:name] unless dir_contents.include? project[:name]
     
     ftp.chdir project[:name]
     ftp.mkdir project[:build_number]
@@ -24,7 +24,7 @@ module FTP
     
     files.each do |file| 
        begin
-        ftp.putbinaryfile file, File.basename(file)  
+        ftp.putbinaryfile file, File.basename(file)  unless file.nil?
        rescue
         next
        end

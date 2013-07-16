@@ -59,6 +59,6 @@ class IPA
       method_string = method.to_s
       return value if key_string.downcase.match /#{method_string.downcase}/
     end
-    raise NoMethodError.new "No method: #{method}"
+    return nil
   end  
 end
