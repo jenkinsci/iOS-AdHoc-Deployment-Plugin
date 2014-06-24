@@ -20,6 +20,18 @@
     		) do f.textbox :clazz=>'required'
     end
     
+    f.entry(:title=> 'Use SSL/TLS',
+            :field=> "secure_ftp",
+            :description=> "If your ftp server needs an ssl/tls connection"
+            ) do f.checkbox
+    end
+
+    f.entry(:title=> 'FTP Port',
+            :field=>"ftp_port",
+            :description=>'FTP Port Number'
+            ) do f.textbox #, :default:'21'
+    end
+
     f.entry(:title=>'FTP Username',
     		:field=>'ftp_user',
     		:description=>'Enter the ftp username here'
