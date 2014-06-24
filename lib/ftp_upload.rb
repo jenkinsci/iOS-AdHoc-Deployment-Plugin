@@ -34,7 +34,7 @@ module FTP
     
     files.each do |file| 
        begin
-        ftp.putbinaryfile file, File.basename(file)  
+        ftp.putbinaryfile file, File.basename(file)  unless file.nil?
        rescue
         next
        end

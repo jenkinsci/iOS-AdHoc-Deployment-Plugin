@@ -83,6 +83,9 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       
       icon_filename = ipa_info_obj.icon
       
+      ipa_url = "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{ipa_filename}"
+      icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{icon_filename}" 
+
       @icon_path = ipa_file_data_obj.path_to_icon_file_with_name icon_filename, ipa_filepath
 
       ipa_url = "#{@http_translation}#{@ftp_ota_dir}#{project_name}/#{build_number}/#{ipa_filename}"
