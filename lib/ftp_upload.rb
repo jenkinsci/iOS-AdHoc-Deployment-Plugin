@@ -6,17 +6,27 @@
 
 require 'rubygems'
 require 'net/ftp'
+require 'ftpfxp'
 
 module FTP
-  def self.upload(server, project, files)
-    ftp = Net::FTP.new
+  DEFAULT_PORT = 21
+  
+  def self.upload(server, project, *files)
+    ftp =  nil
+
+    if server[:secure]
+      ftp = Net::FTPFXPTLS.new server[:hostname]
+    else
+      ftp = Net::FTP.new
+      ftp.connect server[:hostname]
+    end
+    
     ftp.passive = true
-    ftp.connect server[:hostname]
     ftp.login server[:username], server[:pass]
     ftp.chdir server[:upload_path]
     
     dir_contents = ftp.nlst
-    ftp.mkdir project unless dir_contents.include? project[:name]
+    ftp.mkdir project[:name] unless dir_contents.include? project[:name]
     
     ftp.chdir project[:name]
     ftp.mkdir project[:build_number]
