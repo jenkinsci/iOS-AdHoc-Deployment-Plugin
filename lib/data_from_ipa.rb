@@ -53,12 +53,11 @@ class IPA
 
   def method_missing(method, *params)
     return if @plist_data.nil?
-    
     @plist_data.each do |key, value|
       key_string = key.to_s
       method_string = method.to_s
       return value if key_string.downcase.match /#{method_string.downcase}/
     end
-    raise NoMethodError.new "No method: #{method}"
+    puts "No property #{method} found!"
   end  
 end
