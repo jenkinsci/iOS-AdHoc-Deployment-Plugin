@@ -32,11 +32,15 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
   attr_accessor :mail_subject
   attr_accessor :reply_to
   attr_accessor :bcc
-  
+  attr_accessor :ftp_tls?
+  attr_accessor :ftp_port
+
   def initialize(attrs)
     @ipa_path = attrs['ipa_path']
     @ftp_ota_dir = attrs['ftp_ota_dir']
     @ftp_host = attrs['ftp_host']
+    @ftp_secure = attrs['secure_ftp']
+    @ftp_port = attrs['ftp_port']
     @ftp_user = attrs['ftp_user']
     @ftp_password = attrs['ftp_password']
     @reciever_mail_id = attrs['reciever_mail_id']
@@ -59,19 +63,16 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       
       #project informations
       workspace_path = build.native.getProject.getWorkspace() #get the workspace path
-      ipa_filepath = IPASearch::find_in "#{workspace_path}/#{@ipa_path}"
-      ipa_filename = File.basename ipa_file
-      
+      search_path = @ipa_path.nil? ? workspace_path : @ipa_path
+      ipa_filepath = IPASearch::find_in search_path
+      ipa_filename = File.basename ipa_filepath
       #build informations
-      project = build.native.getProject.displayName
+      project_name = build.native.getProject.displayName
       build_number = build.native.getNumber()
       build_number = build_number.to_s
       
-      ipa_url = "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{ipa_filename}"
-      icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{icon_filename}" 
-      
       ipa_file_data_obj = IPAFileData.new
-      info_plist_path = ipa_file_data_obj.binary_plist_path_of ipa_file
+      info_plist_path = ipa_file_data_obj.binary_plist_path_of ipa_filepath
       info_plist_contents = ipa_file_data_obj.contents_of_infoplist info_plist_path, ipa_filepath
       ipa_info_obj = IPA.new info_plist_contents
       
@@ -83,6 +84,9 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       icon_filename = ipa_info_obj.icon
       
       @icon_path = ipa_file_data_obj.path_to_icon_file_with_name icon_filename, ipa_filepath
+
+      ipa_url = "#{@http_translation}#{@ftp_ota_dir}#{project_name}/#{build_number}/#{ipa_filename}"
+      icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project_name}/#{build_number}/#{icon_filename}" 
       
       manifest_file = Manifest::create ipa_url,icon_url, @bundle_identifier, @bundle_version, @title, File.dirname(ipa_filepath)
      
@@ -91,27 +95,29 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
                   :hostname => @ftp_host,
                   :username => @ftp_user, 
                   :pass => @ftp_password, 
-                  :upload_path => @ftp_ota_dir
+                  :upload_path => @ftp_ota_dir,
+                  :secure => @ftp_secure,
+                  :port => @ftp_port
                 }
       
       project = {
-                  :name => project, 
+                  :name => project_name, 
                   :build_number => build_number
                 }
       
-      #begin
+      begin
         FTP::upload server, project, ipa_filepath, manifest_file, @icon_path 
-      #rescue
-       # listner.error "FTP Connection Refused, check the FTP Settings"
-       # build.halt
-       #end
+      rescue
+       listner.error "FTP Connection Refused, check the FTP Settings"
+       build.halt
+       end
       
       #Test this part is working 
       
       #If above works, delete the following parts
       
       manifest_filename = File.basename manifest_file
-      itms_link = "itms-services://?action=download-manifest&url=#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{manifest_filename}"
+      itms_link = "itms-services://?action=download-manifest&url=#{@http_translation}#{@ftp_ota_dir}#{project[:name]}/#{build_number}/#{manifest_filename}"
       itms_link = itms_link.gsub /\s*/,''
       
       listner.info itms_link  
@@ -128,7 +134,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
           },
           {
             :replace=>"{project}",
-            :with=>project
+            :with=>project[:name]
           }
         ]
       end
@@ -144,7 +150,7 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
           },
           {
             :replace=>"{project}",
-            :with=>project
+            :with=>project[:name]
           }
         ]
       end
