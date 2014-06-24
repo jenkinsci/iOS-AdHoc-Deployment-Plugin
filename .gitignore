@@ -2,3 +2,5 @@ work/
 web/
 .DS_Store
 Gemfile.lock
+pkg/otabuilder.hpi
+pkg/*
