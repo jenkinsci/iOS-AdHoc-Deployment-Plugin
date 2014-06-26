@@ -14,13 +14,13 @@ The working of this plugin can be summarized like this.
 
 ###How it looks?
 
-![OTA Plugin Screnshot](https://raw.github.com/sourcebits-jesly/otabuilder-plugin/master/resources/screenshot.png "Screenshot of OTA Builder in Jenkins Project Configuration Page")
+![OTA Plugin Screnshot](https://raw.githubusercontent.com/jenkinsci/iOS-AdHoc-Deployment-Plugin/master/resources/screenshot.png "Screenshot of OTA Builder in Jenkins Project Configuration Page")
 
 ###What needs to be done to have the plugin on my machine?
 
 *  First you need to have, [ruby-runtime-plugin](https://github.com/jenkinsci/ruby-runtime-plugin) installed in your Jenkins Server.
 *  Install jruby [1.6.7](http://jruby.org/2012/02/22/jruby-1-6-7) on your system.
-*  [Clone](github-mac://openRepo/https://github.com/sourcebits-jesly/otabuilder-plugin) this project.
+*  [Clone](github-mac://openRepo/https://github.com/jenkinsci/iOS-AdHoc-Deployment-Plugin) this project.
 *  Have bundler gem installed 
      
      `$gem install bundler --version 1.1.0`
@@ -44,7 +44,7 @@ The working of this plugin can be summarized like this.
 
 ###How to contribute?
 
-Go ahead and [fork](https://github.com/sourcebits-jesly/otabuilder-plugin/fork_select) this!
+Go ahead and [fork](https://github.com/jenkinsci/iOS-AdHoc-Deployment-Plugin) this!
 
 ##License
 
