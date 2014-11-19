@@ -83,16 +83,6 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
       
       icon_filename = ipa_info_obj.icon
       
-      ipa_url = "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{ipa_filename}"
-      icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{icon_filename}" 
-
-      @icon_path = ipa_file_data_obj.path_to_icon_file_with_name icon_filename, ipa_filepath
-
-      ipa_url = "#{@http_translation}#{@ftp_ota_dir}#{project_name}/#{build_number}/#{ipa_filename}"
-      icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project_name}/#{build_number}/#{icon_filename}" 
-      
-      manifest_file = Manifest::create ipa_url,icon_url, @bundle_identifier, @bundle_version, @title, File.dirname(ipa_filepath)
-     
       #upload information
       server  = {
                   :hostname => @ftp_host,
@@ -108,6 +98,16 @@ class OtabuilderWrapper<Jenkins::Tasks::Publisher
                   :build_number => build_number
                 }
       
+      ipa_url = "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{ipa_filename}"
+      icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project}/#{build_number}/#{icon_filename}" 
+
+      @icon_path = ipa_file_data_obj.path_to_icon_file_with_name icon_filename, ipa_filepath
+
+      ipa_url = "#{@http_translation}#{@ftp_ota_dir}#{project_name}/#{build_number}/#{ipa_filename}"
+      icon_url =  "#{@http_translation}#{@ftp_ota_dir}#{project_name}/#{build_number}/#{icon_filename}" 
+      
+      manifest_file = Manifest::create ipa_url,icon_url, @bundle_identifier, @bundle_version, @title, File.dirname(ipa_filepath)
+
       begin
         FTP::upload server, project, ipa_filepath, manifest_file, @icon_path 
       rescue
