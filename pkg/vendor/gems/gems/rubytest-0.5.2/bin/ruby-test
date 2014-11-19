@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-require 'rubytest'
-Test::CLI.run(*ARGV)
-
