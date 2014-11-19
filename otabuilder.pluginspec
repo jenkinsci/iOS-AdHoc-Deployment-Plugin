@@ -6,7 +6,7 @@ Jenkins::Plugin::Specification.new do |plugin|
   
   plugin.url = 'https://wiki.jenkins-ci.org/display/JENKINS/Over-the-Air+Ad+Hoc+Deployment+Plugin+For+iOS'
   plugin.developed_by "jesly.varghese", "Jesly Varghese <jesly.varghese@gmail.com>"
-  plugin.uses_repository :github => "sourcebits-jesly/otabuilder-plugin"
+  plugin.uses_repository :github => "jenkinsci/iOS-AdHoc-Deployment-Plugin"
 
   plugin.depends_on 'ruby-runtime', '0.10'
 end
